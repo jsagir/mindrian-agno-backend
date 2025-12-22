@@ -213,4 +213,6 @@ if __name__ == "__main__":
         print("INFO: NEO4J_URI not set. Opportunity banking disabled.")
 
     # Start the server
-    mindrian_os.serve(app="mindrian_os:app", reload=False)
+    import uvicorn
+    port = int(os.getenv("PORT", 7777))
+    uvicorn.run(app, host="0.0.0.0", port=port)
