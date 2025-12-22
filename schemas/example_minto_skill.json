@@ -1,0 +1,595 @@
+{
+  "metadata": {
+    "id": "minto-pyramid-analysis",
+    "name": "Minto Pyramid Analysis",
+    "version": "1.0.0",
+    "description": "Complete SCQA/MECE pyramid analysis with evidence gathering and synthesis",
+    "author": "Mindrian",
+    "tags": ["strategy", "analysis", "communication", "framework"],
+    "icon": "pyramid",
+    "category": "framework"
+  },
+
+  "source": {
+    "type": "fastmcp-cloud",
+    "url": "https://mindrianmcp-minto.fastmcp.app",
+    "extension_id": "local.dxt.fastmcp-cloud.mindrianmcp-minto",
+    "mcp_config": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://mindrianmcp-minto.fastmcp.app/mcp"]
+    }
+  },
+
+  "agents": [
+    {
+      "id": "minto-analyst",
+      "name": "Minto Analyst",
+      "role": "primary",
+      "description": "Expert in SCQA/MECE structured thinking and pyramid analysis",
+      "model": {
+        "provider": "google",
+        "model_id": "gemini-2.5-flash-preview-05-20",
+        "temperature": 0.7
+      },
+      "instructions": "# Minto Analyst\n\nYou are an expert in the Minto Pyramid Principle and SCQA framework.\n\n## Your Expertise\n\n- **SCQA Framework**: Situation → Complication → Question → Answer\n- **MECE Structuring**: Mutually Exclusive, Collectively Exhaustive groupings\n- **Pyramid Logic**: Top-down communication with supporting evidence\n\n## Process\n\n1. Start with SCQA - especially the Complication (the paradox/tension)\n2. Build MECE groups - test for overlaps and gaps\n3. Gather evidence - ground claims in research\n4. Synthesize pyramid - deliver structured output\n\n## Quality Standards\n\n- SCQA must reveal opportunity, not prescribe solution\n- Complication should be a genuine paradox or tension\n- MECE groups must pass: No overlaps? Covers everything?\n- Evidence must have proper citations",
+      "tools": [
+        "initialize_minto_analysis",
+        "develop_scqa_framework",
+        "generate_mece_framework",
+        "gather_minto_evidence",
+        "search_pws_knowledge"
+      ],
+      "handoff_triggers": [
+        {
+          "condition": "When SCQA and MECE frameworks are complete and validated",
+          "target_agent": "minto-synthesizer",
+          "context_to_pass": ["session_id", "scqa_output", "mece_framework"],
+          "message": "Frameworks ready for synthesis"
+        },
+        {
+          "condition": "When user requests critical review",
+          "target_agent": "minto-critic",
+          "context_to_pass": ["session_id", "current_output"],
+          "message": "Ready for critical review"
+        }
+      ],
+      "reasoning": true
+    },
+    {
+      "id": "minto-synthesizer",
+      "name": "Minto Synthesizer",
+      "role": "synthesizer",
+      "description": "Synthesizes frameworks and evidence into final pyramid deliverable",
+      "model": {
+        "provider": "google",
+        "model_id": "gemini-2.5-flash-preview-05-20"
+      },
+      "instructions": "# Minto Synthesizer\n\nYou synthesize SCQA frameworks, MECE structures, and evidence into polished pyramid deliverables.\n\n## Your Role\n\n- Take validated frameworks from the Minto Analyst\n- Integrate evidence with proper citations\n- Produce clear, actionable pyramid output\n- Ensure logical flow from top to bottom\n\n## Output Quality\n\n- Clear governing thought at the top\n- MECE groupings that support the main point\n- Evidence properly attributed\n- Implications clearly stated",
+      "tools": [
+        "synthesize_pyramid",
+        "finalize_pyramid"
+      ],
+      "handoff_triggers": [
+        {
+          "condition": "When synthesis is complete",
+          "target_agent": "minto-critic",
+          "context_to_pass": ["session_id", "pyramid_output"],
+          "message": "Ready for quality review"
+        }
+      ],
+      "reasoning": true
+    },
+    {
+      "id": "minto-critic",
+      "name": "Minto Critic",
+      "role": "critic",
+      "description": "Reviews pyramid quality against Minto rubric",
+      "model": {
+        "provider": "google",
+        "model_id": "gemini-2.5-flash-preview-05-20"
+      },
+      "instructions": "# Minto Critic\n\nYou evaluate Minto pyramids against strict quality criteria.\n\n## Evaluation Criteria\n\n1. **SCQA Quality**\n   - Is the Situation clear and relevant?\n   - Does the Complication reveal genuine tension?\n   - Does the Question open opportunity space?\n\n2. **MECE Quality**\n   - Are categories mutually exclusive (no overlaps)?\n   - Are they collectively exhaustive (no gaps)?\n   - Is the grouping logical?\n\n3. **Evidence Quality**\n   - Are claims supported by evidence?\n   - Are citations provided?\n   - Is evidence current and relevant?\n\n4. **Logic Flow**\n   - Does top-down logic hold?\n   - Are conclusions warranted?\n\n## Output\n\nProvide:\n- Score (0-100)\n- Specific weaknesses\n- Improvement suggestions\n- GO / REVISE recommendation",
+      "tools": [
+        "critique_pyramid"
+      ],
+      "handoff_triggers": [
+        {
+          "condition": "When revision is needed (score < 70)",
+          "target_agent": "minto-analyst",
+          "context_to_pass": ["session_id", "critique_feedback", "revision_areas"],
+          "message": "Revision needed - see feedback"
+        }
+      ],
+      "reasoning": true
+    }
+  ],
+
+  "team": {
+    "name": "Minto Analysis Team",
+    "mode": "coordinate",
+    "leader": "minto-analyst",
+    "success_criteria": "Pyramid passes quality review with score >= 70"
+  },
+
+  "tools": [
+    {
+      "id": "initialize_minto_analysis",
+      "name": "Initialize Minto Analysis",
+      "description": "Initialize a new Minto pyramid analysis session",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "input_text": {
+            "type": "string",
+            "description": "The text or problem to analyze"
+          },
+          "analysis_goal": {
+            "type": "string",
+            "description": "What the analysis aims to achieve"
+          },
+          "session_id": {
+            "type": "string",
+            "description": "Optional session ID"
+          }
+        },
+        "required": ["input_text", "analysis_goal"]
+      },
+      "implementation": {
+        "type": "fastmcp",
+        "server_url": "https://mindrianmcp-minto.fastmcp.app",
+        "tool_name": "initialize_minto_analysis"
+      },
+      "returns": {
+        "type": "object",
+        "description": "Session information and initial analysis plan"
+      }
+    },
+    {
+      "id": "develop_scqa_framework",
+      "name": "Develop SCQA Framework",
+      "description": "Develop complete SCQA framework using sequential thinking",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "description": "The analysis session ID"
+          },
+          "situation_context": {
+            "type": "string",
+            "description": "Optional hints about the situation"
+          },
+          "complication_hint": {
+            "type": "string",
+            "description": "Optional hints about the complication"
+          }
+        },
+        "required": ["session_id"]
+      },
+      "implementation": {
+        "type": "fastmcp",
+        "server_url": "https://mindrianmcp-minto.fastmcp.app",
+        "tool_name": "develop_scqa_framework"
+      },
+      "returns": {
+        "type": "object",
+        "description": "Complete SCQA framework with thinking steps"
+      }
+    },
+    {
+      "id": "generate_mece_framework",
+      "name": "Generate MECE Framework",
+      "description": "Generate MECE framework with iterative validation",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "session_id": {
+            "type": "string"
+          },
+          "max_iterations": {
+            "type": "integer",
+            "default": 3
+          }
+        },
+        "required": ["session_id"]
+      },
+      "implementation": {
+        "type": "fastmcp",
+        "server_url": "https://mindrianmcp-minto.fastmcp.app",
+        "tool_name": "generate_mece_framework"
+      },
+      "returns": {
+        "type": "object",
+        "description": "Validated MECE framework with revision history"
+      }
+    },
+    {
+      "id": "gather_minto_evidence",
+      "name": "Gather Evidence",
+      "description": "Gather evidence for each MECE category using web search",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "session_id": { "type": "string" },
+          "max_results_per_query": { "type": "integer", "default": 10 }
+        },
+        "required": ["session_id"]
+      },
+      "implementation": {
+        "type": "fastmcp",
+        "server_url": "https://mindrianmcp-minto.fastmcp.app",
+        "tool_name": "gather_evidence"
+      }
+    },
+    {
+      "id": "synthesize_pyramid",
+      "name": "Synthesize Pyramid",
+      "description": "Synthesize complete Minto pyramid with evidence integration",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "session_id": { "type": "string" },
+          "output_format": { "type": "string", "default": "markdown" }
+        },
+        "required": ["session_id"]
+      },
+      "implementation": {
+        "type": "fastmcp",
+        "server_url": "https://mindrianmcp-minto.fastmcp.app",
+        "tool_name": "synthesize_pyramid"
+      }
+    },
+    {
+      "id": "critique_pyramid",
+      "name": "Critique Pyramid",
+      "description": "Run systematic critique against Minto rubric",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "plan_id": { "type": "string" }
+        },
+        "required": ["plan_id"]
+      },
+      "implementation": {
+        "type": "fastmcp",
+        "server_url": "https://pyramidlogicmintomindrian.fastmcp.app",
+        "tool_name": "critique_pyramid_tool"
+      }
+    },
+    {
+      "id": "finalize_pyramid",
+      "name": "Finalize Pyramid",
+      "description": "Finalize and export the pyramid analysis",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "plan_id": { "type": "string" },
+          "format": { "type": "string", "enum": ["markdown", "json", "html"] }
+        },
+        "required": ["plan_id"]
+      },
+      "implementation": {
+        "type": "fastmcp",
+        "server_url": "https://pyramidlogicmintomindrian.fastmcp.app",
+        "tool_name": "finalize_pyramid"
+      }
+    }
+  ],
+
+  "mcp_servers": [
+    {
+      "id": "mindrianmcp-minto",
+      "name": "Minto SCQA Server",
+      "description": "Full Minto pyramid analysis with SCQA and MECE",
+      "config": {
+        "command": "npx",
+        "args": ["-y", "mcp-remote@latest", "https://mindrianmcp-minto.fastmcp.app/mcp"]
+      },
+      "tools_used": [
+        "initialize_minto_analysis",
+        "develop_scqa_framework",
+        "generate_mece_framework",
+        "gather_evidence",
+        "synthesize_pyramid"
+      ]
+    },
+    {
+      "id": "pyramidlogicmintomindrian",
+      "name": "Pyramid Logic Server",
+      "description": "5-stage pyramid reasoning pipeline",
+      "config": {
+        "command": "npx",
+        "args": ["-y", "mcp-remote@latest", "https://pyramidlogicmintomindrian.fastmcp.app/mcp"]
+      },
+      "tools_used": [
+        "critique_pyramid_tool",
+        "finalize_pyramid"
+      ]
+    }
+  ],
+
+  "workflow": {
+    "stages": [
+      {
+        "id": "init",
+        "name": "Initialize Analysis",
+        "description": "Set up session and understand the problem",
+        "agent": "minto-analyst",
+        "output": {
+          "format": "json",
+          "fields": ["session_id", "analysis_plan", "initial_understanding"]
+        },
+        "on_success": "scqa"
+      },
+      {
+        "id": "scqa",
+        "name": "Develop SCQA",
+        "description": "Create Situation-Complication-Question-Answer framework",
+        "agent": "minto-analyst",
+        "input": {
+          "from_stage": "init",
+          "fields": ["session_id"]
+        },
+        "output": {
+          "format": "structured",
+          "fields": ["situation", "complication", "question"]
+        },
+        "validation": {
+          "required_fields": ["situation", "complication", "question"],
+          "quality_checks": [
+            "Complication reveals genuine tension",
+            "Question opens opportunity space"
+          ]
+        },
+        "on_success": "mece",
+        "on_failure": "scqa"
+      },
+      {
+        "id": "mece",
+        "name": "Build MECE Framework",
+        "description": "Create mutually exclusive, collectively exhaustive groupings",
+        "agent": "minto-analyst",
+        "input": {
+          "from_stage": "scqa",
+          "fields": ["session_id", "scqa_output"]
+        },
+        "output": {
+          "format": "structured",
+          "fields": ["categories", "validation_result"]
+        },
+        "validation": {
+          "quality_checks": [
+            "No overlapping categories",
+            "Categories cover full scope"
+          ]
+        },
+        "on_success": "evidence",
+        "on_failure": "mece"
+      },
+      {
+        "id": "evidence",
+        "name": "Gather Evidence",
+        "description": "Collect supporting evidence for each MECE category",
+        "agent": "minto-analyst",
+        "input": {
+          "from_stage": "mece",
+          "fields": ["session_id", "categories"]
+        },
+        "output": {
+          "format": "structured",
+          "fields": ["evidence_by_category", "citations"]
+        },
+        "on_success": "synthesize"
+      },
+      {
+        "id": "synthesize",
+        "name": "Synthesize Pyramid",
+        "description": "Combine all elements into final pyramid",
+        "agent": "minto-synthesizer",
+        "input": {
+          "from_stage": "evidence",
+          "fields": ["session_id", "scqa_output", "mece_framework", "evidence"]
+        },
+        "output": {
+          "format": "markdown",
+          "fields": ["pyramid_output"]
+        },
+        "on_success": "critique"
+      },
+      {
+        "id": "critique",
+        "name": "Quality Review",
+        "description": "Evaluate pyramid against Minto rubric",
+        "agent": "minto-critic",
+        "input": {
+          "from_stage": "synthesize",
+          "fields": ["pyramid_output"]
+        },
+        "output": {
+          "format": "structured",
+          "fields": ["score", "feedback", "recommendation"]
+        },
+        "on_success": "finalize",
+        "on_failure": "scqa"
+      },
+      {
+        "id": "finalize",
+        "name": "Finalize Deliverable",
+        "description": "Export final pyramid in requested format",
+        "agent": "minto-synthesizer",
+        "output": {
+          "format": "markdown",
+          "fields": ["final_pyramid", "executive_summary", "implications"]
+        }
+      }
+    ],
+    "entry_point": "init",
+    "exit_point": "finalize"
+  },
+
+  "outputs": {
+    "primary": {
+      "name": "Minto Pyramid",
+      "description": "Complete SCQA pyramid with MECE groupings and evidence",
+      "format": "markdown",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "governing_thought": { "type": "string" },
+          "situation": { "type": "string" },
+          "complication": { "type": "string" },
+          "question": { "type": "string" },
+          "answer": {
+            "type": "object",
+            "properties": {
+              "summary": { "type": "string" },
+              "mece_groups": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "category": { "type": "string" },
+                    "points": { "type": "array" },
+                    "evidence": { "type": "array" }
+                  }
+                }
+              }
+            }
+          },
+          "implications": { "type": "array" },
+          "citations": { "type": "array" }
+        },
+        "required": ["governing_thought", "situation", "complication", "question", "answer"]
+      },
+      "template": "## Minto Pyramid Analysis\n\n### Governing Thought\n{{governing_thought}}\n\n---\n\n### Situation\n{{situation}}\n\n### Complication\n{{complication}}\n\n### Question\n{{question}}\n\n---\n\n### Answer\n\n{{#each answer.mece_groups}}\n#### {{category}}\n{{#each points}}\n- {{this}}\n{{/each}}\n\n**Evidence:**\n{{#each evidence}}\n- {{this}}\n{{/each}}\n{{/each}}\n\n---\n\n### Implications\n{{#each implications}}\n- {{this}}\n{{/each}}\n\n### Sources\n{{#each citations}}\n- {{this}}\n{{/each}}"
+    },
+    "secondary": [
+      {
+        "name": "SCQA Framework",
+        "format": "structured",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "situation": { "type": "string" },
+            "complication": { "type": "string" },
+            "question": { "type": "string" }
+          }
+        }
+      },
+      {
+        "name": "MECE Map",
+        "format": "structured",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "categories": { "type": "array" },
+            "validation": { "type": "object" }
+          }
+        }
+      }
+    ],
+    "artifacts": [
+      {
+        "name": "Analysis Report",
+        "type": "report",
+        "format": "pdf"
+      },
+      {
+        "name": "Evidence Database",
+        "type": "data",
+        "format": "json"
+      }
+    ]
+  },
+
+  "state": {
+    "session_vars": [
+      {
+        "name": "session_id",
+        "type": "string",
+        "description": "Current analysis session ID"
+      },
+      {
+        "name": "scqa_output",
+        "type": "object",
+        "description": "Current SCQA framework"
+      },
+      {
+        "name": "mece_framework",
+        "type": "object",
+        "description": "Current MECE groupings"
+      },
+      {
+        "name": "evidence_cache",
+        "type": "array",
+        "description": "Gathered evidence"
+      },
+      {
+        "name": "revision_count",
+        "type": "integer",
+        "description": "Number of revision iterations",
+        "default": 0
+      }
+    ],
+    "persistence": {
+      "type": "sqlite",
+      "table": "minto_sessions"
+    }
+  },
+
+  "knowledge": {
+    "sources": [
+      {
+        "type": "pinecone",
+        "config": {
+          "index": "pws-world",
+          "namespace": ""
+        },
+        "query_tool": "search_pws_knowledge"
+      }
+    ],
+    "auto_retrieve": true
+  },
+
+  "examples": [
+    {
+      "name": "Market Entry Analysis",
+      "description": "Analyzing whether to enter a new market",
+      "input": "Should we expand our SaaS product to the European market?",
+      "expected_output": {
+        "situation": "Our SaaS product has strong US traction with 10k customers",
+        "complication": "European expansion requires GDPR compliance and local support, but competitors are already there",
+        "question": "How can we enter Europe profitably while meeting compliance and competitive challenges?"
+      }
+    },
+    {
+      "name": "Product Strategy",
+      "description": "Deciding on product direction",
+      "input": "Our core product is mature. Should we build new features or acquire a complementary product?",
+      "expected_output": {
+        "situation": "Core product at maturity with 85% market share in segment",
+        "complication": "Growth requires expansion, but building is slow and buying is expensive",
+        "question": "What expansion strategy maximizes growth while leveraging our core strengths?"
+      }
+    }
+  ],
+
+  "dependencies": {
+    "python": [
+      "httpx>=0.27.0",
+      "pydantic>=2.0.0"
+    ],
+    "env_vars": [
+      {
+        "name": "GOOGLE_AI_API_KEY",
+        "description": "Google AI API key for Gemini model",
+        "required": true
+      },
+      {
+        "name": "PINECONE_API_KEY",
+        "description": "Pinecone API key for PWS knowledge search",
+        "required": false
+      }
+    ]
+  }
+}

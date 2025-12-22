@@ -1,0 +1,38 @@
+run = "python mindrian_os.py"
+entrypoint = "mindrian_os.py"
+
+[nix]
+channel = "stable-24_05"
+
+[env]
+PYTHONUNBUFFERED = "1"
+
+[deployment]
+run = ["sh", "-c", "python mindrian_os.py"]
+deploymentTarget = "cloudrun"
+
+[[ports]]
+localPort = 7777
+externalPort = 80
+
+[languages]
+
+[languages.python]
+pattern = "**/*.py"
+
+[languages.python.languageServer]
+start = "pylsp"
+
+[packager]
+language = "python3"
+
+[packager.features]
+packageSearch = true
+guessImports = true
+enabledForHosting = true
+
+[gitHubImport]
+requiredFiles = [".replit", "replit.nix", "requirements.txt", "mindrian_os.py"]
+
+[unitTest]
+language = "python3"

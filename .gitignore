@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+.env
+*.egg-info/
+dist/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# SQLite
+*.db
+*.sqlite
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets (NEVER commit these!)
+.env
+.env.local
+.env.production
+
+# Node (for frontend subfolder)
+node_modules/
+.next/
+out/
+.vercel
+
+# Replit
+.replit.nix.lock
+.cache/
+
+# Frontend (separate repo)
+mindrian-frontend/
