@@ -44,6 +44,19 @@ from agents.specialists import (
     master_strategist,
 )
 
+# Import skill agents (MCP-inspired)
+from agents.skill_agents import (
+    deep_thinker,
+    notion_documenter,
+    mind_mapper,
+    deep_researcher,
+    paper_analyst,
+    torah_scholar,
+    workflow_automator,
+    code_navigator,
+    framework_orchestrator,
+)
+
 # Import teams
 from teams.clarification import clarification_team
 from teams.analysis import analysis_team
@@ -74,6 +87,16 @@ mindrian_os = AgentOS(
         reverse_salient_hunter,
         data_extractor,
         master_strategist,
+        # Skill agents (MCP-inspired capabilities)
+        deep_thinker,
+        notion_documenter,
+        mind_mapper,
+        deep_researcher,
+        paper_analyst,
+        torah_scholar,
+        workflow_automator,
+        code_navigator,
+        framework_orchestrator,
     ],
     teams=[
         clarification_team,
@@ -114,6 +137,17 @@ async def root():
                 {"id": "rs-hunter", "name": "Reverse Salient Hunter", "icon": "target", "description": "Innovation opportunity discovery"},
                 {"id": "data-extractor", "name": "Data Extractor", "icon": "database", "description": "Structured data extraction"},
                 {"id": "master-strategist", "name": "Master Strategist", "icon": "brain", "description": "Comprehensive strategic analysis"},
+            ],
+            "skills": [
+                {"id": "deep-thinker", "name": "Deep Thinker", "icon": "brain", "description": "Sequential reasoning for complex problems"},
+                {"id": "notion-documenter", "name": "Notion Documenter", "icon": "file-text", "description": "Knowledge organization and documentation"},
+                {"id": "mind-mapper", "name": "Mind Mapper", "icon": "git-branch", "description": "Visual concept mapping and structuring"},
+                {"id": "deep-researcher", "name": "Deep Researcher", "icon": "search", "description": "Comprehensive multi-source research (Tavily)"},
+                {"id": "paper-analyst", "name": "Research Paper Analyst", "icon": "book-open", "description": "Academic paper analysis"},
+                {"id": "torah-scholar", "name": "Torah Scholar", "icon": "book", "description": "Jewish texts and wisdom"},
+                {"id": "workflow-automator", "name": "Workflow Automator", "icon": "zap", "description": "Automation workflow design"},
+                {"id": "code-navigator", "name": "Code Navigator", "icon": "code", "description": "Codebase exploration and analysis"},
+                {"id": "framework-orchestrator", "name": "Framework Orchestrator", "icon": "workflow", "description": "Visual multi-tool pipeline design"},
             ],
         },
         "teams": [
@@ -185,6 +219,17 @@ if __name__ == "__main__":
     print("  - Reverse Salient Hunter (innovation discovery)")
     print("  - Data Extractor (structured extraction)")
     print("  - Master Strategist (comprehensive analysis)")
+    print()
+    print("Skill Agents (MCP-Inspired):")
+    print("  - Deep Thinker (sequential reasoning)")
+    print("  - Notion Documenter (knowledge organization)")
+    print("  - Mind Mapper (visual concept mapping)")
+    print("  - Deep Researcher (Tavily multi-source research)")
+    print("  - Research Paper Analyst (academic analysis)")
+    print("  - Torah Scholar (Jewish wisdom)")
+    print("  - Workflow Automator (n8n workflow design)")
+    print("  - Code Navigator (codebase exploration)")
+    print("  - Framework Orchestrator (visual pipeline design)")
     print()
     print("Teams:")
     print("  - Clarification Team (Clarifier + Devil + Synthesizer)")
