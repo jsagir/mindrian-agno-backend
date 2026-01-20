@@ -33,6 +33,9 @@ FILES = [
 
     ("System prompt.txt",
      "T2_Tools/AckoffPyramid_SystemPrompt_Complete", 500, 100),
+
+    ("Materials_Guide_Complete.txt",
+     "T2_Tools/AckoffPyramid_MaterialsGuide_CaseStudies", 500, 100),
 ]
 
 
