@@ -119,7 +119,7 @@ def generate_team_code(skill: dict) -> str:
 {skill["metadata"]["id"].replace("-", "_")}_team = Team(
     name="{team_config.get("name", skill["metadata"]["name"] + " Team")}",
     description="{skill["metadata"]["description"]}",
-    model=Gemini(id="gemini-2.5-flash-preview-05-20", api_key=os.getenv("GOOGLE_AI_API_KEY")),
+    model=Gemini(id="gemini-3-flash-preview", api_key=os.getenv("GOOGLE_AI_API_KEY")),
     members=[{members_str}],
     instructions=["""
 {team_config.get("instructions", "")}
@@ -225,7 +225,7 @@ except ImportError:
 def get_gemini_model():
     """Get Gemini model with API key."""
     return Gemini(
-        id="gemini-2.5-flash-preview-05-20",
+        id="gemini-3-flash-preview",
         api_key=os.getenv("GOOGLE_AI_API_KEY"),
     )
 

@@ -71,7 +71,7 @@ For each opportunity:
 discovery_team = Team(
     name="Discovery Team",
     description="Advanced innovation discovery using Minto + Reverse Salients",
-    model=Gemini(id="gemini-2.5-flash-preview-05-20", api_key=os.getenv("GOOGLE_AI_API_KEY")),
+    model=Gemini(id="gemini-3-flash-preview", api_key=os.getenv("GOOGLE_AI_API_KEY")),
     members=[minto_analyst, reverse_salient_hunter, master_strategist],
     instructions=[DISCOVERY_TEAM_INSTRUCTIONS],
     markdown=True,

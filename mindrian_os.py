@@ -110,6 +110,16 @@ mindrian_os = AgentOS(
 # Get the FastAPI app
 app = mindrian_os.get_app()
 
+# Add CORS middleware for frontend
+from fastapi.middleware.cors import CORSMiddleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # =============================================================================
 # CUSTOM ENDPOINTS

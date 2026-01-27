@@ -56,7 +56,7 @@ Provide a structured validation report:
 validation_team = Team(
     name="Validation Team",
     description="Validates opportunities through PWS, Devil's Advocate, and Expert analysis",
-    model=Gemini(id="gemini-2.5-flash-preview-05-20", api_key=os.getenv("GOOGLE_AI_API_KEY")),
+    model=Gemini(id="gemini-3-flash-preview", api_key=os.getenv("GOOGLE_AI_API_KEY")),
     members=[larry_pws_instructor, larry_devil, larry_expert],
     instructions=[VALIDATION_TEAM_INSTRUCTIONS],
     markdown=True,

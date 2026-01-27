@@ -54,7 +54,7 @@ Provide exploration results:
 exploration_team = Team(
     name="Exploration Team",
     description="Explores business possibilities through questioning, education, and synthesis",
-    model=Gemini(id="gemini-2.5-flash-preview-05-20", api_key=os.getenv("GOOGLE_AI_API_KEY")),
+    model=Gemini(id="gemini-3-flash-preview", api_key=os.getenv("GOOGLE_AI_API_KEY")),
     members=[larry_clarifier, larry_teacher, larry_synthesizer],
     instructions=[EXPLORATION_TEAM_INSTRUCTIONS],
     markdown=True,

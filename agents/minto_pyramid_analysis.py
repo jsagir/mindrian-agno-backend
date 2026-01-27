@@ -30,9 +30,9 @@ except ImportError:
 # =============================================================================
 
 def get_gemini_model():
-    """Get Gemini model with API key."""
+    """Get Gemini 3 Flash model with API key."""
     return Gemini(
-        id="gemini-2.5-flash-preview-05-20",
+        id="gemini-3-flash-preview",
         api_key=os.getenv("GOOGLE_AI_API_KEY"),
     )
 

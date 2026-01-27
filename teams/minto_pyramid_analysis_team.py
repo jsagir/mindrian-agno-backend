@@ -21,7 +21,7 @@ from agents.minto_pyramid_analysis import (
 minto_pyramid_analysis_team = Team(
     name="Minto Analysis Team",
     description="Complete SCQA/MECE pyramid analysis with evidence gathering and synthesis",
-    model=Gemini(id="gemini-2.5-flash-preview-05-20", api_key=os.getenv("GOOGLE_AI_API_KEY")),
+    model=Gemini(id="gemini-3-flash-preview", api_key=os.getenv("GOOGLE_AI_API_KEY")),
     members=[minto_analyst, minto_synthesizer, minto_critic],
     instructions=["""
 

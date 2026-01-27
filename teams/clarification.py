@@ -21,7 +21,7 @@ from agents.larry import larry_clarifier, larry_devil, larry_synthesizer
 clarification_team = Team(
     name="Clarification Team",
     description="Clarifies problems through questioning and challenge",
-    model=Gemini(id="gemini-2.5-flash-preview-05-20", api_key=os.getenv("GOOGLE_AI_API_KEY")),
+    model=Gemini(id="gemini-3-flash-preview", api_key=os.getenv("GOOGLE_AI_API_KEY")),
     members=[larry_clarifier, larry_devil, larry_synthesizer],
     instructions=[
         """

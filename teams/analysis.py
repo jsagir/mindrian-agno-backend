@@ -21,7 +21,7 @@ from agents.larry import larry_pws_instructor, larry_expert, larry_coach
 analysis_team = Team(
     name="Analysis Team",
     description="Applies PWS frameworks to analyze problems",
-    model=Gemini(id="gemini-2.5-flash-preview-05-20", api_key=os.getenv("GOOGLE_AI_API_KEY")),
+    model=Gemini(id="gemini-3-flash-preview", api_key=os.getenv("GOOGLE_AI_API_KEY")),
     members=[larry_pws_instructor, larry_expert, larry_coach],
     instructions=[
         """

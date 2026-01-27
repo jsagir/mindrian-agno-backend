@@ -368,7 +368,7 @@ def get_opportunity(opportunity_id: str) -> str:
 
 # Model configuration - Gemini 3 as primary
 def get_gemini_model():
-    """Get Gemini 3 model with API key."""
+    """Get Gemini 3 Flash model with API key."""
     return Gemini(
         id="gemini-3-flash-preview",
         api_key=os.getenv("GOOGLE_AI_API_KEY"),

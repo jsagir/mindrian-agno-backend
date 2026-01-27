@@ -1,139 +1,108 @@
 """
-PWS Brain Tools - Pinecone Integration for PWS Course Knowledge
+PWS Brain Tools - Gemini File Search Integration for PWS Course Knowledge
 
-This module provides tools for searching knowledge bases:
-1. neo4j-knowledge-base - Primary RAG (multilingual-e5-large, 1024 dims)
-2. pws-world - PWS course content fallback
+This module provides tools for searching the PWS knowledge base using
+Google's Gemini File Search API (grounded retrieval).
 
-Uses Pinecone's integrated inference for automatic embedding.
+Store: fileSearchStores/pwsknowledgebase-a4rnz3u41lsn
+~389 documents, ~2M tokens indexed
+
+Cost: Storage FREE, Retrieval FREE, Embedding ~$0.30 one-time
 """
 
 import os
 from typing import Optional
-from pinecone import Pinecone
+from google import genai
 
-# Initialize Pinecone clients lazily
-_pinecone_client: Optional[Pinecone] = None
-_indexes = {}
+# Gemini File Search Store ID
+GEMINI_FILE_SEARCH_STORE = os.getenv(
+    "GEMINI_FILE_SEARCH_STORE",
+    "fileSearchStores/pwsknowledgebase-a4rnz3u41lsn"
+)
 
-# Index configurations
-INDEX_CONFIGS = {
-    "neo4j-knowledge-base": {
-        "host": "https://neo4j-knowledge-base-bc1849d.svc.aped-4627-b74a.pinecone.io",
-        "model": "multilingual-e5-large",
-        "dimensions": 1024,
-        "namespace": "",
-        "priority": 1,  # Primary
-    },
-    "pws-world": {
-        "model": "text-embedding-3-large",
-        "dimensions": 1024,
-        "namespace": "",
-        "priority": 2,  # Fallback
-    },
-}
-
-# Default index
-DEFAULT_INDEX = os.getenv("PINECONE_INDEX_NAME", "neo4j-knowledge-base")
+# Initialize Gemini client lazily
+_genai_client: Optional[genai.Client] = None
 
 
-def _get_pinecone_client():
-    """Get or initialize Pinecone client."""
-    global _pinecone_client
+def _get_genai_client() -> genai.Client:
+    """Get or initialize Gemini client."""
+    global _genai_client
 
-    if _pinecone_client is None:
-        api_key = os.getenv("PINECONE_API_KEY")
+    if _genai_client is None:
+        api_key = os.getenv("GOOGLE_AI_API_KEY") or os.getenv("GEMINI_API_KEY")
         if not api_key:
-            raise ValueError("PINECONE_API_KEY environment variable not set")
-        _pinecone_client = Pinecone(api_key=api_key)
+            raise ValueError("GOOGLE_AI_API_KEY or GEMINI_API_KEY environment variable not set")
+        _genai_client = genai.Client(api_key=api_key)
 
-    return _pinecone_client
-
-
-def _get_pinecone_index(index_name: str = None):
-    """Get or initialize Pinecone index."""
-    global _indexes
-
-    index_name = index_name or DEFAULT_INDEX
-
-    if index_name not in _indexes:
-        pc = _get_pinecone_client()
-        config = INDEX_CONFIGS.get(index_name, {})
-
-        # Use host if provided, otherwise use index name
-        if "host" in config:
-            _indexes[index_name] = pc.Index(host=config["host"])
-        else:
-            _indexes[index_name] = pc.Index(index_name)
-
-    return _indexes[index_name]
+    return _genai_client
 
 
-def search_knowledge(query: str, top_k: int = 5, index_name: str = None) -> str:
+def search_knowledge(query: str, top_k: int = 5) -> str:
     """
-    Search knowledge base for relevant content.
-
-    Uses neo4j-knowledge-base (primary) with multilingual-e5-large embeddings.
+    Search knowledge base using Gemini File Search (grounded retrieval).
 
     Args:
         query: The search query
-        top_k: Number of results to return (default 5)
-        index_name: Specific index to search (default: neo4j-knowledge-base)
+        top_k: Number of results to return (used as guidance for retrieval)
 
     Returns:
-        Formatted string with relevant knowledge chunks
+        Formatted string with relevant knowledge chunks and grounding info
     """
     try:
-        index_name = index_name or DEFAULT_INDEX
-        index = _get_pinecone_index(index_name)
-        config = INDEX_CONFIGS.get(index_name, {})
+        client = _get_genai_client()
 
-        # Use Pinecone's integrated inference for search
-        results = index.search(
-            namespace=config.get("namespace", ""),
-            query={
-                "inputs": {"text": query},
-                "top_k": top_k
-            },
-            include_metadata=True,
+        # Generate content with grounded retrieval using Gemini 3
+        response = client.models.generate_content(
+            model="gemini-3-flash-preview",
+            contents=f"""Search the PWS knowledge base and return the most relevant information for this query.
+
+Query: {query}
+
+Instructions:
+- Return up to {top_k} relevant pieces of information
+- Include specific details, frameworks, and examples from the knowledge base
+- Cite which documents/sections the information comes from
+- Format the response clearly with headers and bullet points""",
+            config={
+                "tools": [{"file_search": {"file_search_store_names": [GEMINI_FILE_SEARCH_STORE]}}],
+                "temperature": 0.1,  # Low temp for factual retrieval
+            }
         )
 
-        # Handle different response formats
-        matches = []
-        if hasattr(results, 'matches'):
-            matches = results.matches
-        elif isinstance(results, dict):
-            matches = results.get("matches", results.get("results", []))
-            if isinstance(matches, list) and len(matches) > 0 and isinstance(matches[0], dict) and "matches" in matches[0]:
-                matches = matches[0]["matches"]
+        # Extract text and grounding metadata
+        result_text = response.text if hasattr(response, 'text') else str(response)
 
-        if not matches:
-            return f"No knowledge found for: {query}"
-
+        # Check for grounding metadata (citations)
         output_parts = [f"## Knowledge Search: {query}\n"]
-        output_parts.append(f"*Index: {index_name} | Model: {config.get('model', 'unknown')}*\n")
+        output_parts.append(f"*Source: Gemini File Search | Store: pwsknowledgebase*\n")
+        output_parts.append(result_text)
 
-        for i, match in enumerate(matches, 1):
-            if hasattr(match, 'score'):
-                score = match.score
-                metadata = match.metadata or {}
-            else:
-                score = match.get("score", 0)
-                metadata = match.get("metadata", {})
-
-            title = metadata.get("title", metadata.get("name", "Untitled"))
-            content = metadata.get("text", metadata.get("content", metadata.get("description", "No content")))
-            source = metadata.get("source", metadata.get("type", "Knowledge Base"))
-
-            output_parts.append(f"### {i}. {title}")
-            output_parts.append(f"**Relevance:** {score:.2f}")
-            output_parts.append(f"\n{content}\n")
-            output_parts.append(f"*Source: {source}*\n---")
+        # Add grounding chunks if available
+        if hasattr(response, 'candidates') and response.candidates:
+            candidate = response.candidates[0]
+            if hasattr(candidate, 'grounding_metadata') and candidate.grounding_metadata:
+                grounding = candidate.grounding_metadata
+                if hasattr(grounding, 'grounding_chunks') and grounding.grounding_chunks:
+                    output_parts.append("\n---\n### Source Documents:")
+                    for i, chunk in enumerate(grounding.grounding_chunks[:top_k], 1):
+                        if hasattr(chunk, 'retrieved_context'):
+                            ctx = chunk.retrieved_context
+                            title = getattr(ctx, 'title', f'Document {i}')
+                            uri = getattr(ctx, 'uri', '')
+                            output_parts.append(f"\n**{i}. {title}**")
+                            if uri:
+                                output_parts.append(f"  - URI: {uri}")
 
         return "\n".join(output_parts)
 
     except Exception as e:
-        return f"Error searching knowledge: {str(e)}"
+        error_msg = str(e)
+        # Provide fallback for common frameworks if search fails
+        if "jtbd" in query.lower() or "jobs to be done" in query.lower():
+            return FRAMEWORK_FALLBACKS.get("jtbd", f"Error searching knowledge: {error_msg}")
+        elif "minto" in query.lower() or "scqa" in query.lower():
+            return FRAMEWORK_FALLBACKS.get("minto", f"Error searching knowledge: {error_msg}")
+        return f"Error searching knowledge: {error_msg}"
 
 
 def search_pws_knowledge(query: str, top_k: int = 5) -> str:
@@ -153,8 +122,7 @@ def search_pws_knowledge(query: str, top_k: int = 5) -> str:
     Returns:
         Formatted string with relevant PWS knowledge chunks
     """
-    # Use primary knowledge base (neo4j-knowledge-base)
-    return search_knowledge(query, top_k, DEFAULT_INDEX)
+    return search_knowledge(query, top_k)
 
 
 def get_framework_details(framework_name: str) -> str:
@@ -179,30 +147,33 @@ def get_framework_details(framework_name: str) -> str:
     """
     # Map common names to search terms
     framework_aliases = {
-        "jtbd": "jobs to be done JTBD hire product progress",
-        "jobs to be done": "jobs to be done JTBD milkshake hire",
-        "minto": "minto pyramid SCQA situation complication question answer",
-        "scqa": "SCQA situation complication question answer minto",
-        "s-curve": "s-curve technology adoption lifecycle",
+        "jtbd": "jobs to be done JTBD hire product progress milkshake example",
+        "jobs to be done": "jobs to be done JTBD milkshake hire progress",
+        "minto": "minto pyramid SCQA situation complication question answer structure",
+        "scqa": "SCQA situation complication question answer minto pyramid",
+        "s-curve": "s-curve technology adoption lifecycle innovation",
         "s curve": "s-curve technology adoption lifecycle",
-        "four lenses": "four lenses innovation orthodoxies trends",
-        "white space": "white space mapping opportunity gap",
-        "scenario analysis": "scenario analysis 2x2 matrix future",
-        "devil's advocate": "devil's advocate challenge assumptions stress test",
+        "four lenses": "four lenses innovation orthodoxies trends competencies",
+        "white space": "white space mapping opportunity gap market",
+        "scenario analysis": "scenario analysis 2x2 matrix future planning",
+        "devil's advocate": "devil's advocate challenge assumptions stress test validation",
         "devils advocate": "devil's advocate challenge assumptions stress test",
+        "reverse salient": "reverse salient bottleneck innovation opportunity",
+        "4 pillar": "4 pillar validation scorecard market execution",
+        "validation scorecard": "validation scorecard 4 pillar market execution team",
     }
 
     # Get search term
     search_term = framework_aliases.get(
         framework_name.lower(),
-        f"{framework_name} framework methodology PWS"
+        f"{framework_name} framework methodology PWS innovation"
     )
 
     # Search with higher top_k for framework details
     return search_pws_knowledge(search_term, top_k=7)
 
 
-# Framework definitions for when Pinecone is unavailable
+# Framework definitions for fallback when API is unavailable
 FRAMEWORK_FALLBACKS = {
     "jtbd": """
 ## Jobs to Be Done (JTBD) Framework
