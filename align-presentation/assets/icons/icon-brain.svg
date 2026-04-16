@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Left hemisphere -->
+  <path d="M32,56 L32,10 C32,10 26,6 20,8 C14,10 10,16 10,22 C8,22 6,26 8,30 C6,32 6,38 10,40 C10,44 14,50 20,52 C24,54 28,54 32,56" stroke="#4fc3f7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Right hemisphere -->
+  <path d="M32,10 C32,10 38,6 44,8 C50,10 54,16 54,22 C56,22 58,26 56,30 C58,32 58,38 54,40 C54,44 50,50 44,52 C40,54 36,54 32,56" stroke="#4fc3f7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Neural dots -->
+  <circle cx="22" cy="24" r="2" stroke="#4fc3f7" stroke-width="1.5" fill="none"/>
+  <circle cx="18" cy="36" r="2" stroke="#4fc3f7" stroke-width="1.5" fill="none"/>
+  <circle cx="26" cy="42" r="2" stroke="#4fc3f7" stroke-width="1.5" fill="none"/>
+  <circle cx="42" cy="24" r="2" stroke="#4fc3f7" stroke-width="1.5" fill="none"/>
+  <circle cx="46" cy="36" r="2" stroke="#4fc3f7" stroke-width="1.5" fill="none"/>
+  <circle cx="38" cy="42" r="2" stroke="#4fc3f7" stroke-width="1.5" fill="none"/>
+  <!-- Neural connections -->
+  <line x1="24" y1="24" x2="30" y2="30" stroke="#4fc3f7" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="18" y1="38" x2="26" y2="42" stroke="#4fc3f7" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="40" y1="24" x2="34" y2="30" stroke="#4fc3f7" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="46" y1="38" x2="38" y2="42" stroke="#4fc3f7" stroke-width="1" stroke-dasharray="2,2"/>
+</svg>

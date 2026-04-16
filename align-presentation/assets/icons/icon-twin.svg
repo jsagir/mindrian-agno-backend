@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Back rectangle -->
+  <rect x="18" y="10" width="30" height="38" rx="3" stroke="#4fc3f7" stroke-width="2" fill="none"/>
+  <!-- Front rectangle (overlapping) -->
+  <rect x="16" y="16" width="30" height="38" rx="3" stroke="#4fc3f7" stroke-width="2" fill="none"/>
+  <!-- Connection lines between the two -->
+  <line x1="22" y1="26" x2="40" y2="26" stroke="#4fc3f7" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <line x1="22" y1="34" x2="40" y2="34" stroke="#4fc3f7" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <line x1="22" y1="42" x2="40" y2="42" stroke="#4fc3f7" stroke-width="1.5" stroke-dasharray="3,2"/>
+</svg>

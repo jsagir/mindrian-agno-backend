@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Left hand -->
+  <path d="M6,34 C6,34 12,28 18,28 L28,28" stroke="#c9a84c" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M6,34 L6,40 C6,40 12,46 18,46 L24,42" stroke="#c9a84c" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Right hand -->
+  <path d="M58,34 C58,34 52,28 46,28 L36,28" stroke="#c9a84c" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M58,34 L58,40 C58,40 52,46 46,46 L40,42" stroke="#c9a84c" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Clasp -->
+  <path d="M28,28 C30,24 34,24 36,28" stroke="#c9a84c" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M24,42 C28,48 36,48 40,42" stroke="#c9a84c" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Fingers interlocked -->
+  <path d="M28,28 L28,36 C28,38 30,40 32,38 C34,40 36,38 36,36 L36,28" stroke="#c9a84c" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

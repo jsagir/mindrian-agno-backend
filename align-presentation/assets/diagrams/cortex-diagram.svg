@@ -1,0 +1,203 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="hexGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="flowLine1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0.2"/>
+    </linearGradient>
+    <linearGradient id="flowLine2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0.2"/>
+    </linearGradient>
+    <linearGradient id="flowLine3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4fc3f7" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#4fc3f7" stop-opacity="0.2"/>
+    </linearGradient>
+    <linearGradient id="outputArrow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#0a1628"/>
+
+  <!-- Subtle grid -->
+  <g opacity="0.03" stroke="#4fc3f7">
+    <line x1="0" y1="200" x2="1200" y2="200" stroke-width="0.5"/>
+    <line x1="0" y1="400" x2="1200" y2="400" stroke-width="0.5"/>
+    <line x1="0" y1="600" x2="1200" y2="600" stroke-width="0.5"/>
+    <line x1="300" y1="0" x2="300" y2="800" stroke-width="0.5"/>
+    <line x1="600" y1="0" x2="600" y2="800" stroke-width="0.5"/>
+    <line x1="900" y1="0" x2="900" y2="800" stroke-width="0.5"/>
+  </g>
+
+  <!-- Title -->
+  <text x="600" y="55" text-anchor="middle" fill="#c9a84c" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="600" letter-spacing="5">THREE FORCES CONVERGING</text>
+  <line x1="200" y1="72" x2="1000" y2="72" stroke="#c9a84c" stroke-width="0.5" opacity="0.2"/>
+
+  <!-- ============================================= -->
+  <!-- FORCE 1: TFT -->
+  <!-- ============================================= -->
+  <rect x="60" y="140" width="320" height="140" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+  <!-- Corner accents -->
+  <line x1="60" y1="140" x2="85" y2="140" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="60" y1="140" x2="60" y2="165" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="380" y1="140" x2="355" y2="140" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="380" y1="140" x2="380" y2="165" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="60" y1="280" x2="85" y2="280" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="60" y1="280" x2="60" y2="255" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="380" y1="280" x2="355" y2="280" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="380" y1="280" x2="380" y2="255" stroke="#c9a84c" stroke-width="3"/>
+
+  <!-- Force 1 label -->
+  <text x="90" y="170" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" letter-spacing="2">FORCE 1</text>
+  <text x="90" y="200" fill="#c9a84c" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="2">TFT</text>
+  <text x="90" y="225" fill="#e4e4e4" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13">Trade Facilitation &amp; Transit</text>
+  <text x="90" y="245" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11">Regulatory frameworks, customs,</text>
+  <text x="90" y="260" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11">bilateral agreements</text>
+
+  <!-- Force 1 number badge -->
+  <circle cx="350" cy="175" r="20" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.3"/>
+  <text x="350" y="181" text-anchor="middle" fill="#c9a84c" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="700" opacity="0.5">01</text>
+
+  <!-- ============================================= -->
+  <!-- FORCE 2: CORRIDOR X -->
+  <!-- ============================================= -->
+  <rect x="60" y="320" width="320" height="140" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+  <line x1="60" y1="320" x2="85" y2="320" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="60" y1="320" x2="60" y2="345" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="380" y1="320" x2="355" y2="320" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="380" y1="320" x2="380" y2="345" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="60" y1="460" x2="85" y2="460" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="60" y1="460" x2="60" y2="435" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="380" y1="460" x2="355" y2="460" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="380" y1="460" x2="380" y2="435" stroke="#c9a84c" stroke-width="3"/>
+
+  <text x="90" y="350" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" letter-spacing="2">FORCE 2</text>
+  <text x="90" y="382" fill="#c9a84c" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="2">CORRIDOR X</text>
+  <text x="90" y="407" fill="#e4e4e4" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13">Physical Infrastructure Build</text>
+  <text x="90" y="427" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11">Ports, rail, pipelines,</text>
+  <text x="90" y="442" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11">energy, data cables</text>
+
+  <circle cx="350" cy="355" r="20" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.3"/>
+  <text x="350" y="361" text-anchor="middle" fill="#c9a84c" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="700" opacity="0.5">02</text>
+
+  <!-- ============================================= -->
+  <!-- FORCE 3: INTELLIGENCE & DATA -->
+  <!-- ============================================= -->
+  <rect x="60" y="500" width="320" height="140" fill="none" stroke="#4fc3f7" stroke-width="1.5"/>
+  <line x1="60" y1="500" x2="85" y2="500" stroke="#4fc3f7" stroke-width="3"/>
+  <line x1="60" y1="500" x2="60" y2="525" stroke="#4fc3f7" stroke-width="3"/>
+  <line x1="380" y1="500" x2="355" y2="500" stroke="#4fc3f7" stroke-width="3"/>
+  <line x1="380" y1="500" x2="380" y2="525" stroke="#4fc3f7" stroke-width="3"/>
+  <line x1="60" y1="640" x2="85" y2="640" stroke="#4fc3f7" stroke-width="3"/>
+  <line x1="60" y1="640" x2="60" y2="615" stroke="#4fc3f7" stroke-width="3"/>
+  <line x1="380" y1="640" x2="355" y2="640" stroke="#4fc3f7" stroke-width="3"/>
+  <line x1="380" y1="640" x2="380" y2="615" stroke="#4fc3f7" stroke-width="3"/>
+
+  <text x="90" y="530" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" letter-spacing="2">FORCE 3</text>
+  <text x="90" y="560" fill="#4fc3f7" font-family="'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="1">INTELLIGENCE &amp; DATA</text>
+  <text x="90" y="585" fill="#e4e4e4" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13">ALIGN Advisory Layer</text>
+  <text x="90" y="605" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11">HUMINT + SIGINT fusion,</text>
+  <text x="90" y="620" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11">AI agents, digital twin</text>
+
+  <circle cx="350" cy="535" r="20" fill="none" stroke="#4fc3f7" stroke-width="1" opacity="0.3"/>
+  <text x="350" y="541" text-anchor="middle" fill="#4fc3f7" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="700" opacity="0.5">03</text>
+
+  <!-- ============================================= -->
+  <!-- CONVERGING FLOW LINES -->
+  <!-- ============================================= -->
+  <!-- Force 1 to center -->
+  <line x1="380" y1="210" x2="620" y2="370" stroke="#c9a84c" stroke-width="1.5" opacity="0.5"/>
+  <line x1="380" y1="210" x2="620" y2="370" stroke="#c9a84c" stroke-width="0.5" stroke-dasharray="6,8" opacity="0.8"/>
+  <!-- Flow dots on line 1 -->
+  <circle cx="440" cy="240" r="2" fill="#c9a84c" opacity="0.6"/>
+  <circle cx="500" cy="270" r="2.5" fill="#c9a84c" opacity="0.5"/>
+  <circle cx="560" cy="310" r="2" fill="#c9a84c" opacity="0.4"/>
+
+  <!-- Force 2 to center -->
+  <line x1="380" y1="390" x2="620" y2="390" stroke="#c9a84c" stroke-width="1.5" opacity="0.5"/>
+  <line x1="380" y1="390" x2="620" y2="390" stroke="#c9a84c" stroke-width="0.5" stroke-dasharray="6,8" opacity="0.8"/>
+  <circle cx="440" cy="390" r="2" fill="#c9a84c" opacity="0.6"/>
+  <circle cx="500" cy="390" r="2.5" fill="#c9a84c" opacity="0.5"/>
+  <circle cx="560" cy="390" r="2" fill="#c9a84c" opacity="0.4"/>
+
+  <!-- Force 3 to center -->
+  <line x1="380" y1="570" x2="620" y2="410" stroke="#4fc3f7" stroke-width="1.5" opacity="0.5"/>
+  <line x1="380" y1="570" x2="620" y2="410" stroke="#4fc3f7" stroke-width="0.5" stroke-dasharray="6,8" opacity="0.8"/>
+  <circle cx="440" cy="540" r="2" fill="#4fc3f7" opacity="0.6"/>
+  <circle cx="500" cy="500" r="2.5" fill="#4fc3f7" opacity="0.5"/>
+  <circle cx="560" cy="450" r="2" fill="#4fc3f7" opacity="0.4"/>
+
+  <!-- ============================================= -->
+  <!-- CENTER HEXAGON: ACTIONABLE FEASIBILITY -->
+  <!-- ============================================= -->
+  <!-- Outer glow ring -->
+  <polygon points="700,330 760,360 760,420 700,450 640,420 640,360" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.15" filter="url(#hexGlow)"/>
+  <!-- Main hexagon -->
+  <polygon points="700,340 750,365 750,415 700,440 650,415 650,365" fill="#0a1628" stroke="#c9a84c" stroke-width="2" filter="url(#glow)"/>
+  <!-- Inner hexagon -->
+  <polygon points="700,355 735,372 735,408 700,425 665,408 665,372" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Hex label -->
+  <text x="700" y="385" text-anchor="middle" fill="#c9a84c" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="1">ACTIONABLE</text>
+  <text x="700" y="402" text-anchor="middle" fill="#c9a84c" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="1">FEASIBILITY</text>
+
+  <!-- ============================================= -->
+  <!-- OUTPUT ARROW TO CERTAINTY -->
+  <!-- ============================================= -->
+  <!-- Main arrow line -->
+  <line x1="760" y1="390" x2="1020" y2="390" stroke="url(#outputArrow)" stroke-width="2"/>
+  <line x1="760" y1="390" x2="1020" y2="390" stroke="#c9a84c" stroke-width="0.5" stroke-dasharray="8,6" opacity="0.4"/>
+
+  <!-- Arrow dots -->
+  <circle cx="820" cy="390" r="2" fill="#c9a84c" opacity="0.3"/>
+  <circle cx="870" cy="390" r="2.5" fill="#c9a84c" opacity="0.4"/>
+  <circle cx="920" cy="390" r="3" fill="#c9a84c" opacity="0.5"/>
+  <circle cx="970" cy="390" r="3.5" fill="#c9a84c" opacity="0.6"/>
+
+  <!-- Arrowhead -->
+  <polygon points="1020,390 1005,378 1005,402" fill="#c9a84c" opacity="0.8"/>
+
+  <!-- ============================================= -->
+  <!-- CERTAINTY destination -->
+  <!-- ============================================= -->
+  <rect x="1040" y="345" width="120" height="90" fill="none" stroke="#c9a84c" stroke-width="2"/>
+  <line x1="1040" y1="345" x2="1065" y2="345" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="1040" y1="345" x2="1040" y2="370" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="1160" y1="345" x2="1135" y2="345" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="1160" y1="345" x2="1160" y2="370" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="1040" y1="435" x2="1065" y2="435" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="1040" y1="435" x2="1040" y2="410" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="1160" y1="435" x2="1135" y2="435" stroke="#c9a84c" stroke-width="3"/>
+  <line x1="1160" y1="435" x2="1160" y2="410" stroke="#c9a84c" stroke-width="3"/>
+
+  <text x="1100" y="385" text-anchor="middle" fill="#c9a84c" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3">CERTAINTY</text>
+  <text x="1100" y="410" text-anchor="middle" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" letter-spacing="1">for Capital</text>
+
+  <!-- ============================================= -->
+  <!-- Labels on flow lines -->
+  <!-- ============================================= -->
+  <text x="480" y="230" text-anchor="middle" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" letter-spacing="1" opacity="0.6" transform="rotate(-20, 480, 230)">REGULATORY DATA</text>
+  <text x="500" y="378" text-anchor="middle" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" letter-spacing="1" opacity="0.6">PHYSICAL ASSETS</text>
+  <text x="480" y="530" text-anchor="middle" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" letter-spacing="1" opacity="0.6" transform="rotate(20, 480, 530)">INTELLIGENCE</text>
+
+  <text x="890" y="378" text-anchor="middle" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" letter-spacing="2" opacity="0.5">SYNTHESIS</text>
+
+  <!-- Bottom credit -->
+  <text x="600" y="775" text-anchor="middle" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" letter-spacing="2" opacity="0.4">ALIGN ADVISORY GROUP</text>
+</svg>

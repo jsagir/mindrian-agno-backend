@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 800">
+  <defs>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="routeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.4"/>
+      <stop offset="20%" stop-color="#c9a84c" stop-opacity="1"/>
+      <stop offset="80%" stop-color="#c9a84c" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="seaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0d2040" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#0a1628" stop-opacity="1"/>
+    </linearGradient>
+    <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1600" height="800" fill="#0a1628"/>
+
+  <!-- Subtle grid lines -->
+  <g opacity="0.04" stroke="#4fc3f7">
+    <line x1="0" y1="200" x2="1600" y2="200" stroke-width="0.5"/>
+    <line x1="0" y1="400" x2="1600" y2="400" stroke-width="0.5"/>
+    <line x1="0" y1="600" x2="1600" y2="600" stroke-width="0.5"/>
+    <line x1="400" y1="0" x2="400" y2="800" stroke-width="0.5"/>
+    <line x1="800" y1="0" x2="800" y2="800" stroke-width="0.5"/>
+    <line x1="1200" y1="0" x2="1200" y2="800" stroke-width="0.5"/>
+  </g>
+
+  <!-- Geographic hints - Indian subcontinent coast -->
+  <path d="M 120,280 Q 140,320 160,380 Q 170,420 190,460 Q 200,500 180,540 Q 170,570 190,600 Q 200,620 210,580 Q 230,520 250,460 Q 260,400 240,350 Q 230,310 200,280 Q 170,260 120,280 Z"
+        fill="none" stroke="#8a9bb5" stroke-width="0.8" opacity="0.15"/>
+
+  <!-- Arabian Peninsula hint -->
+  <path d="M 500,300 Q 520,310 560,320 Q 600,340 640,380 Q 660,420 650,460 Q 640,500 610,540 Q 580,570 540,560 Q 500,540 480,500 Q 460,460 450,420 Q 440,380 460,340 Q 480,310 500,300 Z"
+        fill="none" stroke="#8a9bb5" stroke-width="0.8" opacity="0.12"/>
+
+  <!-- Red Sea hint -->
+  <path d="M 520,300 Q 510,340 505,380 Q 500,420 490,460 Q 480,500 470,530"
+        fill="none" stroke="#4fc3f7" stroke-width="0.5" opacity="0.08"/>
+
+  <!-- Mediterranean Sea hint -->
+  <path d="M 700,240 Q 780,230 860,225 Q 940,220 1020,230 Q 1100,240 1180,260 Q 1240,275 1280,280"
+        fill="none" stroke="#4fc3f7" stroke-width="0.8" opacity="0.1"/>
+
+  <!-- Africa hint -->
+  <path d="M 460,530 Q 480,540 520,560 Q 560,570 580,590 Q 600,620 590,660 Q 570,700 540,720"
+        fill="none" stroke="#8a9bb5" stroke-width="0.6" opacity="0.08"/>
+
+  <!-- Europe hint -->
+  <path d="M 1100,200 Q 1120,180 1160,170 Q 1200,165 1240,175 Q 1280,190 1320,210 Q 1360,230 1380,250 Q 1400,270 1410,300"
+        fill="none" stroke="#8a9bb5" stroke-width="0.8" opacity="0.12"/>
+
+  <!-- Title -->
+  <text x="800" y="70" text-anchor="middle" fill="#c9a84c" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="600" letter-spacing="6">INDIA-MIDDLE EAST-EUROPE ECONOMIC CORRIDOR</text>
+  <line x1="300" y1="90" x2="1300" y2="90" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Subtitle -->
+  <text x="800" y="115" text-anchor="middle" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" letter-spacing="3">STRATEGIC ROUTE ARCHITECTURE</text>
+
+  <!-- Route line - main gold corridor path -->
+  <!-- Mumbai to Abu Dhabi to Riyadh to Amman to Haifa to Piraeus to Europe -->
+  <path d="M 200,420 Q 300,400 420,380 Q 500,365 600,370 Q 680,375 760,360 Q 830,345 900,320 Q 960,300 1040,290 Q 1120,285 1200,300 Q 1280,315 1400,350"
+        fill="none" stroke="url(#routeGrad)" stroke-width="3" filter="url(#glow)" opacity="0.9"/>
+
+  <!-- Dashed secondary route indicator -->
+  <path d="M 200,420 Q 300,400 420,380 Q 500,365 600,370 Q 680,375 760,360 Q 830,345 900,320 Q 960,300 1040,290 Q 1120,285 1200,300 Q 1280,315 1400,350"
+        fill="none" stroke="#c9a84c" stroke-width="1" stroke-dasharray="8,12" opacity="0.3"/>
+
+  <!-- Node: Mumbai -->
+  <circle cx="200" cy="420" r="28" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="200" cy="420" r="18" fill="#0a1628" stroke="#c9a84c" stroke-width="2" filter="url(#glow)"/>
+  <circle cx="200" cy="420" r="6" fill="#c9a84c" opacity="0.8"/>
+  <text x="200" y="465" text-anchor="middle" fill="#e4e4e4" font-family="'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="600">MUMBAI</text>
+  <text x="200" y="483" text-anchor="middle" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11">India</text>
+
+  <!-- Node: Abu Dhabi -->
+  <circle cx="420" cy="380" r="28" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="420" cy="380" r="18" fill="#0a1628" stroke="#c9a84c" stroke-width="2" filter="url(#glow)"/>
+  <circle cx="420" cy="380" r="6" fill="#c9a84c" opacity="0.8"/>
+  <text x="420" y="425" text-anchor="middle" fill="#e4e4e4" font-family="'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="600">ABU DHABI</text>
+  <text x="420" y="443" text-anchor="middle" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11">UAE</text>
+
+  <!-- Node: Riyadh -->
+  <circle cx="600" cy="370" r="28" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="600" cy="370" r="18" fill="#0a1628" stroke="#c9a84c" stroke-width="2" filter="url(#glow)"/>
+  <circle cx="600" cy="370" r="6" fill="#c9a84c" opacity="0.8"/>
+  <text x="600" y="415" text-anchor="middle" fill="#e4e4e4" font-family="'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="600">RIYADH</text>
+  <text x="600" y="433" text-anchor="middle" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11">Saudi Arabia</text>
+
+  <!-- Node: Amman -->
+  <circle cx="790" cy="355" r="28" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="790" cy="355" r="18" fill="#0a1628" stroke="#c9a84c" stroke-width="2" filter="url(#glow)"/>
+  <circle cx="790" cy="355" r="6" fill="#c9a84c" opacity="0.8"/>
+  <text x="790" y="400" text-anchor="middle" fill="#e4e4e4" font-family="'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="600">AMMAN</text>
+  <text x="790" y="418" text-anchor="middle" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11">Jordan</text>
+
+  <!-- Node: Haifa -->
+  <circle cx="950" cy="310" r="28" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="950" cy="310" r="18" fill="#0a1628" stroke="#c9a84c" stroke-width="2" filter="url(#glow)"/>
+  <circle cx="950" cy="310" r="6" fill="#c9a84c" opacity="0.8"/>
+  <text x="950" y="355" text-anchor="middle" fill="#e4e4e4" font-family="'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="600">HAIFA</text>
+  <text x="950" y="373" text-anchor="middle" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11">Israel</text>
+
+  <!-- Node: Piraeus -->
+  <circle cx="1150" cy="290" r="28" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="1150" cy="290" r="18" fill="#0a1628" stroke="#c9a84c" stroke-width="2" filter="url(#glow)"/>
+  <circle cx="1150" cy="290" r="6" fill="#c9a84c" opacity="0.8"/>
+  <text x="1150" y="335" text-anchor="middle" fill="#e4e4e4" font-family="'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="600">PIRAEUS</text>
+  <text x="1150" y="353" text-anchor="middle" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11">Greece</text>
+
+  <!-- Node: Europe -->
+  <circle cx="1400" cy="350" r="28" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="1400" cy="350" r="18" fill="#0a1628" stroke="#c9a84c" stroke-width="2" filter="url(#glow)"/>
+  <circle cx="1400" cy="350" r="6" fill="#c9a84c" opacity="0.8"/>
+  <text x="1400" y="395" text-anchor="middle" fill="#e4e4e4" font-family="'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="600">EUROPE</text>
+  <text x="1400" y="413" text-anchor="middle" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11">Terminus</text>
+
+  <!-- Maritime route indicator -->
+  <text x="310" y="360" text-anchor="middle" fill="#4fc3f7" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" letter-spacing="2" opacity="0.5">MARITIME</text>
+  <text x="700" y="340" text-anchor="middle" fill="#4fc3f7" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" letter-spacing="2" opacity="0.5">RAIL</text>
+  <text x="1050" y="270" text-anchor="middle" fill="#4fc3f7" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" letter-spacing="2" opacity="0.5">MARITIME</text>
+
+  <!-- Distance/info markers -->
+  <g opacity="0.3">
+    <text x="200" y="510" text-anchor="middle" fill="#c9a84c" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10">PORT</text>
+    <text x="420" y="470" text-anchor="middle" fill="#c9a84c" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10">PORT</text>
+    <text x="600" y="460" text-anchor="middle" fill="#c9a84c" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10">RAIL HUB</text>
+    <text x="790" y="445" text-anchor="middle" fill="#c9a84c" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10">RAIL NODE</text>
+    <text x="950" y="400" text-anchor="middle" fill="#c9a84c" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10">PORT</text>
+    <text x="1150" y="380" text-anchor="middle" fill="#c9a84c" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10">PORT</text>
+  </g>
+
+  <!-- Bottom border accent -->
+  <line x1="100" y1="750" x2="1500" y2="750" stroke="#c9a84c" stroke-width="0.5" opacity="0.2"/>
+  <text x="800" y="775" text-anchor="middle" fill="#8a9bb5" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" letter-spacing="2" opacity="0.5">ALIGN ADVISORY GROUP</text>
+</svg>

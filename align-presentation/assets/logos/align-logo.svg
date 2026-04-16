@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="800" height="200">
+  <defs>
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c9a84c"/>
+      <stop offset="100%" stop-color="#dfc477"/>
+    </linearGradient>
+  </defs>
+  <!-- Mark: geometric A with signal lines -->
+  <g transform="translate(40,30)">
+    <!-- Outer diamond/shield -->
+    <polygon points="60,0 120,50 120,120 60,140 0,120 0,50" fill="none" stroke="#c9a84c" stroke-width="2"/>
+    <!-- Inner triangle (the A) -->
+    <polygon points="60,20 100,110 20,110" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+    <!-- Crossbar -->
+    <line x1="35" y1="80" x2="85" y2="80" stroke="#c9a84c" stroke-width="1.5"/>
+    <!-- Signal pulses -->
+    <circle cx="60" cy="65" r="8" fill="none" stroke="#4fc3f7" stroke-width="0.8" opacity="0.6"/>
+    <circle cx="60" cy="65" r="16" fill="none" stroke="#4fc3f7" stroke-width="0.5" opacity="0.3"/>
+    <circle cx="60" cy="65" r="24" fill="none" stroke="#4fc3f7" stroke-width="0.3" opacity="0.15"/>
+    <!-- Center dot -->
+    <circle cx="60" cy="65" r="3" fill="#c9a84c"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="200" y="105" font-family="'Cormorant Garamond', Georgia, serif" font-size="72" font-weight="300" fill="#c9a84c" letter-spacing="18">ALIGN</text>
+  <!-- Submark -->
+  <text x="520" y="105" font-family="'IBM Plex Sans', sans-serif" font-size="24" font-weight="300" fill="#8a9bb5" letter-spacing="6">INTELLIGENCE</text>
+  <!-- Underline -->
+  <line x1="200" y1="125" x2="780" y2="125" stroke="#c9a84c" stroke-width="0.5" opacity="0.4"/>
+</svg>

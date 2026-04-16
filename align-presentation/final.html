@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>ALIGN Intelligence — Hardwiring the Abraham Accords</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy-deepest: #060e1a;
+  --navy-deep: #0a1628;
+  --navy-mid: #111d2e;
+  --navy-card: #152238;
+  --navy-light: #1a2d4a;
+  --gold: #c9a84c;
+  --gold-light: #dfc477;
+  --gold-dim: rgba(201,168,76,0.15);
+  --gold-border: rgba(201,168,76,0.25);
+  --cyan: #4fc3f7;
+  --cyan-dim: rgba(79,195,247,0.12);
+  --cyan-border: rgba(79,195,247,0.2);
+  --text-primary: #e4e4e4;
+  --text-secondary: #8a9bb5;
+  --text-muted: #5a6d87;
+  --white: #ffffff;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'IBM Plex Sans', -apple-system, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+body {
+  background: var(--navy-deepest);
+  color: var(--text-primary);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── SLIDE CONTAINER ── */
+.slide {
+  width: 1920px;
+  height: 1080px;
+  position: relative;
+  overflow: hidden;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+}
+
+.slide-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 72px 96px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── BACKGROUNDS ── */
+.bg-deep { background: var(--navy-deepest); }
+.bg-dark { background: var(--navy-deep); }
+.bg-mid { background: var(--navy-mid); }
+
+/* Subtle grid pattern */
+.bg-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+/* Gold accent line at top */
+.accent-top::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 96px; right: 96px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
+}
+
+/* Slide number */
+.slide-num {
+  position: absolute;
+  bottom: 36px;
+  right: 96px;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+}
+
+.slide-num span { color: var(--gold); }
+
+/* ── TYPOGRAPHY ── */
+.t-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.t-title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 52px;
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.t-title-lg {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 72px;
+  line-height: 1.1;
+  color: var(--white);
+}
+
+.t-subtitle {
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  max-width: 800px;
+}
+
+.t-body {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.t-body-sm {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.t-accent { color: var(--gold); }
+.t-cyan { color: var(--cyan); }
+.t-white { color: var(--white); font-weight: 400; }
+
+.t-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--gold-light);
+  line-height: 1.45;
+}
+
+/* ── DIVIDERS ── */
+.divider {
+  width: 80px;
+  height: 1px;
+  background: var(--gold);
+  margin: 24px 0;
+}
+
+.divider-v {
+  width: 1px;
+  height: 40px;
+  background: var(--gold-border);
+}
+
+/* ── CARDS ── */
+.card {
+  background: var(--navy-card);
+  border: 1px solid var(--gold-border);
+  padding: 32px;
+  position: relative;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.card-cyan::before {
+  background: linear-gradient(90deg, var(--cyan), transparent);
+}
+
+.card-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.card-num {
+  font-family: var(--mono);
+  font-size: 36px;
+  font-weight: 300;
+  color: var(--gold);
+  opacity: 0.6;
+  margin-bottom: 12px;
+}
+
+/* ── LAYOUT UTILITIES ── */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-1 { flex: 1; }
+.gap-16 { gap: 16px; }
+.gap-24 { gap: 24px; }
+.gap-32 { gap: 32px; }
+.gap-40 { gap: 40px; }
+.gap-48 { gap: 48px; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.mt-auto { margin-top: auto; }
+.mb-8 { margin-bottom: 8px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+.mb-40 { margin-bottom: 40px; }
+
+/* ── CUSTOM ELEMENTS ── */
+.pill {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border: 1px solid var(--gold-border);
+  color: var(--gold);
+}
+
+.tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  background: var(--gold-dim);
+  color: var(--gold);
+}
+
+.tag-cyan {
+  background: var(--cyan-dim);
+  color: var(--cyan);
+  border-color: var(--cyan-border);
+}
+
+.progress-bar {
+  height: 4px;
+  background: var(--navy-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--cyan));
+}
+
+/* ── LIST STYLES ── */
+.list-check {
+  list-style: none;
+  padding: 0;
+}
+.list-check li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 14px;
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text-secondary);
+}
+.list-check li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 12px;
+  height: 6px;
+  border-left: 1.5px solid var(--gold);
+  border-bottom: 1.5px solid var(--gold);
+  transform: rotate(-45deg);
+}
+
+/* Team grid */
+.team-member {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.team-member .name {
+  color: var(--white);
+  font-weight: 500;
+}
+.team-member .role {
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+/* Timeline */
+.timeline-phase {
+  flex: 1;
+  position: relative;
+  padding-top: 48px;
+}
+.timeline-phase::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--navy-light);
+}
+.timeline-phase::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: var(--navy-deep);
+}
+.timeline-phase.active::after {
+  background: var(--gold);
+}
+
+/* Connector lines (SVG-based diagrams) */
+.diagram-container {
+  position: relative;
+  width: 100%;
+  flex: 1;
+}
+
+/* Footer bar */
+.slide-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: rgba(6,14,26,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 96px;
+  border-top: 1px solid rgba(201,168,76,0.1);
+}
+
+.slide-footer span {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+/* ── NAVIGATION ── */
+.nav-dots {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 100;
+}
+.nav-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  opacity: 0.4;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.nav-dot.active {
+  background: var(--gold);
+  opacity: 1;
+  transform: scale(1.5);
+}
+</style>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 1: COVER — HARDWIRING THE ABRAHAM ACCORDS
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="slide bg-deep" id="slide-1">
+  <div class="slide-inner" style="padding-top:0; padding-bottom:0;">
+    <!-- Top gold line -->
+    <div style="height:3px; background: linear-gradient(90deg, var(--gold), var(--cyan), var(--gold)); opacity:0.7;"></div>
+
+    <div class="flex flex-1" style="padding: 60px 0;">
+      <!-- Left: Text content -->
+      <div class="flex flex-col justify-center" style="width:55%; padding-right:80px;">
+        <img src="assets/logos/align-capital-logo.jpg" alt="ALIGN Capital" style="height:60px; margin-bottom:24px;">
+        <div class="t-label" style="margin-bottom:24px;">Confidential &mdash; Institutional Use Only</div>
+
+        <h1 style="font-family:var(--serif); font-size:80px; font-weight:300; color:var(--white); line-height:1.05; margin-bottom:8px;">
+          ALIGN<br>Intelligence
+        </h1>
+
+        <div class="divider" style="margin:20px 0 28px;"></div>
+
+        <p style="font-family:var(--serif); font-size:34px; font-weight:300; color:var(--gold-light); line-height:1.3; margin-bottom:32px;">
+          Hardwiring the Abraham Accords.
+        </p>
+
+        <p class="t-body" style="max-width:580px; margin-bottom:24px;">
+          Intelligence-driven origination engine and IMEC Unified Operations Center. Serving Sovereign Wealth Funds, DFIs, and strategic General Partners seeking proprietary, de-risked exposure to the India&ndash;Middle East&ndash;Europe Economic Corridor.
+        </p>
+
+        <p class="t-body" style="max-width:580px; margin-bottom:36px;">
+          Diplomacy is software &mdash; elegant, essential, yet vulnerable. To make regional stability <span class="t-white">irreversible</span>, we upgrade to hardware: power grids, desalinated water pipelines, and subsea data cables creating structural interdependence so deep that conflict becomes <span class="t-white">economically irrational</span>.
+        </p>
+
+        <div class="flex gap-24">
+          <span class="pill">Built for Execution</span>
+          <span class="pill">Intelligence-Driven</span>
+          <span class="pill">21st Century</span>
+        </div>
+      </div>
+
+      <!-- Right: Organism Diagram -->
+      <div class="flex flex-col justify-center items-center" style="width:45%;">
+        <img src="assets/diagrams/organism-diagram.svg" alt="The Living Organism" style="width:100%; max-width:500px; max-height:520px;">
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="slide-footer">
+      <img src="assets/logos/align-capital-logo.jpg" alt="ALIGN Capital" style="height:24px;">
+      <span>CONFIDENTIAL</span>
+      <span style="color:var(--gold);">01 / 17</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 2: IMEC'S STRATEGIC IMPORTANCE
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="slide bg-dark bg-grid" id="slide-2">
+  <div class="slide-inner accent-top">
+    <div class="t-label">Why Now</div>
+    <h2 class="t-title">IMEC's Strategic Importance</h2>
+    <p class="t-subtitle">Six compelling reasons for first-mover advantage</p>
+
+    <div class="flex gap-24 flex-1" style="margin-top:16px;">
+      <!-- Card 1 -->
+      <div class="card flex-1 flex flex-col">
+        <img src="assets/icons/icon-timing.svg" alt="" style="width:40px; height:40px; margin-bottom:8px;">
+        <div class="card-num">01</div>
+        <div class="card-title">Strategic Timing</div>
+        <p class="t-body-sm">Alternative to Suez responding to global supply chain shifts. First-mover positioning in a once-in-a-century infrastructure realignment.</p>
+      </div>
+      <!-- Card 2 -->
+      <div class="card flex-1 flex flex-col">
+        <img src="assets/icons/icon-connectivity.svg" alt="" style="width:40px; height:40px; margin-bottom:8px;">
+        <div class="card-num">02</div>
+        <div class="card-title">Seamless Connectivity</div>
+        <p class="t-body-sm">India&ndash;Gulf&ndash;Europe link cutting transit time, boosting resilience. Multi-modal corridor reducing dependence on single chokepoints.</p>
+      </div>
+      <!-- Card 3 -->
+      <div class="card flex-1 flex flex-col">
+        <img src="assets/icons/icon-diversification.svg" alt="" style="width:40px; height:40px; margin-bottom:8px;">
+        <div class="card-num">03</div>
+        <div class="card-title">Gulf Diversification</div>
+        <p class="t-body-sm">Positions Gulf states as logistics hubs beyond oil dependency. Aligns with Vision 2030 and broader regional economic transformation agendas.</p>
+      </div>
+      <!-- Card 4 -->
+      <div class="card flex-1 flex flex-col">
+        <img src="assets/icons/icon-growth.svg" alt="" style="width:40px; height:40px; margin-bottom:8px;">
+        <div class="card-num">04</div>
+        <div class="card-title">Regional Growth</div>
+        <p class="t-body-sm">Drives trade and infrastructure across Jordan, Israel, Saudi Arabia. Creates economic zones and employment corridors along the route.</p>
+      </div>
+      <!-- Card 5 -->
+      <div class="card flex-1 flex flex-col">
+        <img src="assets/icons/icon-peace.svg" alt="" style="width:40px; height:40px; margin-bottom:8px;">
+        <div class="card-num">05</div>
+        <div class="card-title">Stability &amp; Peace</div>
+        <p class="t-body-sm">Fosters shared interests and unprecedented regional cooperation. Structural interdependence as the foundation of irreversible stability.</p>
+      </div>
+      <!-- Card 6 -->
+      <div class="card flex-1 flex flex-col">
+        <img src="assets/icons/icon-sustainable.svg" alt="" style="width:40px; height:40px; margin-bottom:8px;">
+        <div class="card-num">06</div>
+        <div class="card-title">Sustainable Future</div>
+        <p class="t-body-sm">Enables low-emission transport and renewable energy integration. Green hydrogen, solar, and HVDC built into the corridor from day one.</p>
+      </div>
+    </div>
+
+    <!-- Corridor map background -->
+    <div style="position:absolute; bottom:60px; left:96px; right:96px; opacity:0.12; pointer-events:none;">
+      <img src="assets/diagrams/corridor-map.svg" alt="" style="width:100%; height:auto;">
+    </div>
+
+    <div class="slide-num"><span>02</span> / 17</div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 3: ALIGN — INITIATOR & LEAD COORDINATOR
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="slide bg-mid bg-grid" id="slide-3">
+  <div class="slide-inner accent-top">
+    <div class="t-label">Who</div>
+    <h2 class="t-title">ALIGN: Initiator &amp; Lead Coordinator</h2>
+    <p class="t-subtitle">Creator and primary coordinator of the IMEC Techno-Financial Task Force</p>
+
+    <p class="t-body" style="max-width:900px; margin-bottom:48px;">
+      ALIGN conceived, designed, and launched this initiative. As the founding organization and primary coordinator, ALIGN brings together global expertise, capital networks, and strategic vision to transform IMEC from concept to reality.
+    </p>
+
+    <div class="flex gap-40 flex-1">
+      <!-- Role 1 -->
+      <div class="flex-1 flex flex-col">
+        <div style="width:64px; height:2px; background:var(--gold); margin-bottom:24px;"></div>
+        <div class="tag mb-16">Initiator &amp; Visionary</div>
+        <h3 style="font-family:var(--serif); font-size:28px; font-weight:400; color:var(--white); margin-bottom:16px;">
+          Conceived the Model
+        </h3>
+        <p class="t-body-sm">
+          Designed the TFT model and structured the feasibility approach. Created the three-force framework that unifies technical, financial, and intelligence capabilities into a single operational cortex.
+        </p>
+      </div>
+
+      <!-- Vertical divider -->
+      <div style="width:1px; background:var(--gold-border);"></div>
+
+      <!-- Role 2 -->
+      <div class="flex-1 flex flex-col">
+        <div style="width:64px; height:2px; background:var(--gold); margin-bottom:24px;"></div>
+        <div class="tag mb-16">Lead Coordinator</div>
+        <h3 style="font-family:var(--serif); font-size:28px; font-weight:400; color:var(--white); margin-bottom:16px;">
+          Managing Alignment
+        </h3>
+        <p class="t-body-sm">
+          Managing consortium formation and stakeholder alignment across regions. Orchestrating multi-national partnerships, regulatory engagement, and cross-border coordination at every level.
+        </p>
+      </div>
+
+      <!-- Vertical divider -->
+      <div style="width:1px; background:var(--gold-border);"></div>
+
+      <!-- Role 3 -->
+      <div class="flex-1 flex flex-col">
+        <div style="width:64px; height:2px; background:var(--gold); margin-bottom:24px;"></div>
+        <div class="tag mb-16">Capital Mobilizer</div>
+        <h3 style="font-family:var(--serif); font-size:28px; font-weight:400; color:var(--white); margin-bottom:16px;">
+          Connecting Capital
+        </h3>
+        <p class="t-body-sm">
+          Connecting institutional investors, sovereigns, and strategic partners. Building the financial architecture that transforms feasibility studies into funded, executable projects.
+        </p>
+      </div>
+    </div>
+
+    <p class="t-body-sm" style="color:var(--text-muted); margin-top:32px; font-style:italic;">
+      ALIGN coordinates all workstreams and maintains strategic oversight throughout execution.
+    </p>
+
+    <div class="slide-num"><span>03</span> / 17</div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 4: DE-RISKING MULTI-BILLION DOLLAR INVESTMENTS
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="slide bg-dark bg-grid" id="slide-4">
+  <div class="slide-inner accent-top">
+    <div class="t-label">Stakes</div>
+    <h2 class="t-title">De-Risking Multi-Billion Dollar Investments</h2>
+    <p class="t-subtitle">Six critical pillars of our comprehensive feasibility study</p>
+
+    <div class="flex gap-32 flex-1" style="margin-top:8px;">
+      <!-- Left column: 3 pillars -->
+      <div class="flex flex-col gap-24 flex-1">
+        <div class="card flex items-start gap-24" style="flex:1;">
+          <div style="display:flex; flex-direction:column; align-items:center; min-width:48px;">
+            <img src="assets/icons/icon-shield.svg" alt="" style="width:32px; height:32px; margin-bottom:4px;">
+            <span class="card-num" style="font-size:28px; min-width:48px;">01</span>
+          </div>
+          <div>
+            <div class="card-title" style="font-size:18px;">Investment Risk Mitigation</div>
+            <p class="t-body-sm">Identifies core risks across countries for viable long-term financing. Multi-scenario stress testing across geopolitical, regulatory, and financial dimensions.</p>
+          </div>
+        </div>
+        <div class="card flex items-start gap-24" style="flex:1;">
+          <div style="display:flex; flex-direction:column; align-items:center; min-width:48px;">
+            <img src="assets/icons/icon-shield.svg" alt="" style="width:32px; height:32px; margin-bottom:4px;">
+            <span class="card-num" style="font-size:28px; min-width:48px;">02</span>
+          </div>
+          <div>
+            <div class="card-title" style="font-size:18px;">Stakeholder Alignment</div>
+            <p class="t-body-sm">Builds shared vision for trunk corridor and opportunity zones. Sovereign, institutional, and private sector interests mapped and harmonized.</p>
+          </div>
+        </div>
+        <div class="card flex items-start gap-24" style="flex:1;">
+          <div style="display:flex; flex-direction:column; align-items:center; min-width:48px;">
+            <img src="assets/icons/icon-shield.svg" alt="" style="width:32px; height:32px; margin-bottom:4px;">
+            <span class="card-num" style="font-size:28px; min-width:48px;">03</span>
+          </div>
+          <div>
+            <div class="card-title" style="font-size:18px;">Optimized Infrastructure</div>
+            <p class="t-body-sm">Defines efficient routing and integrates multi-modal transport. Genetic algorithm optimization across thousands of configuration variables.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column: 3 pillars -->
+      <div class="flex flex-col gap-24 flex-1">
+        <div class="card flex items-start gap-24" style="flex:1;">
+          <div style="display:flex; flex-direction:column; align-items:center; min-width:48px;">
+            <img src="assets/icons/icon-shield.svg" alt="" style="width:32px; height:32px; margin-bottom:4px;">
+            <span class="card-num" style="font-size:28px; min-width:48px;">04</span>
+          </div>
+          <div>
+            <div class="card-title" style="font-size:18px;">Demand Validation</div>
+            <p class="t-body-sm">Confirms trade flows, economic impact, job creation potential. Independent market sizing and demand modeling with sensitivity analysis.</p>
+          </div>
+        </div>
+        <div class="card flex items-start gap-24" style="flex:1;">
+          <div style="display:flex; flex-direction:column; align-items:center; min-width:48px;">
+            <img src="assets/icons/icon-shield.svg" alt="" style="width:32px; height:32px; margin-bottom:4px;">
+            <span class="card-num" style="font-size:28px; min-width:48px;">05</span>
+          </div>
+          <div>
+            <div class="card-title" style="font-size:18px;">Regulatory Pathways</div>
+            <p class="t-body-sm">Maps cross-border legal, customs, and compliance frameworks. Regulatory risk indexed by jurisdiction with mitigation strategies.</p>
+          </div>
+        </div>
+        <div class="card flex items-start gap-24" style="flex:1;">
+          <div style="display:flex; flex-direction:column; align-items:center; min-width:48px;">
+            <img src="assets/icons/icon-shield.svg" alt="" style="width:32px; height:32px; margin-bottom:4px;">
+            <span class="card-num" style="font-size:28px; min-width:48px;">06</span>
+          </div>
+          <div>
+            <div class="card-title" style="font-size:18px;">Strategic Phasing</div>
+            <p class="t-body-sm">Structures rollout: connective infrastructure first, then local ventures. Capital deployment sequenced for maximum IRR and risk-adjusted returns.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; padding:16px 24px; border-left:3px solid var(--gold); background:var(--gold-dim);">
+      <p class="t-body-sm" style="color:var(--gold-light);">
+        ALIGN&rsquo;s work is the key that unlocks investments estimated in the billions of dollars. The feasibility study is the fiduciary prerequisite for institutional capital deployment.
+      </p>
+    </div>
+
+    <div class="slide-num"><span>04</span> / 17</div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 5: OUR DNA — INTELLIGENCE FOR PROSPERITY
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="slide bg-mid" id="slide-5">
+  <div class="slide-inner accent-top">
+    <div class="t-label">Credibility</div>
+    <h2 class="t-title">Our DNA: Intelligence for Prosperity</h2>
+
+    <div class="flex gap-48 flex-1" style="margin-top:24px;">
+      <!-- Left: Intelligence Heritage -->
+      <div class="flex-1 flex flex-col">
+        <div class="divider mb-24"></div>
+        <p class="t-body" style="margin-bottom:28px; max-width:600px;">
+          ALIGN grew out of the world&rsquo;s most demanding intelligence and technology ecosystem. We channel elite collection and signal-decryption methodologies &mdash; not for warfare, but for <span class="t-accent">Opportunity Mining</span>: uncovering interest networks, identifying deals before they reach the market, and mapping risks invisible to conventional analysis.
+        </p>
+
+        <div class="flex flex-col gap-20" style="margin-top:8px;">
+          <div class="flex items-start gap-16">
+            <div style="min-width:6px; height:6px; background:var(--gold); margin-top:8px;"></div>
+            <p class="t-body-sm"><span class="t-white">Multi-disciplinary team</span> from universities, research institutes, industry, and EPC engineering firms</p>
+          </div>
+          <div class="flex items-start gap-16">
+            <div style="min-width:6px; height:6px; background:var(--gold); margin-top:8px;"></div>
+            <p class="t-body-sm"><span class="t-white">Expertise across:</span> Engineering, Finance &amp; PPP, Cross-border Regulation, Geopolitical Risk</p>
+          </div>
+          <div class="flex items-start gap-16">
+            <div style="min-width:6px; height:6px; background:var(--gold); margin-top:8px;"></div>
+            <p class="t-body-sm"><span class="t-white">The Intelligence Advantage:</span> Applying elite methodologies (HUMINT/SIGINT) to opportunity discovery and risk mapping</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vertical divider -->
+      <div style="width:1px; background:var(--gold-border);"></div>
+
+      <!-- Right: Aramco Case Study -->
+      <div class="flex-1 flex flex-col">
+        <div class="tag mb-24">Inspiration &mdash; Case Study</div>
+        <h3 style="font-family:var(--serif); font-size:26px; font-weight:400; color:var(--white); margin-bottom:8px;">
+          The Blueprint of Excellence
+        </h3>
+        <p style="font-family:var(--serif); font-size:20px; font-weight:300; color:var(--gold-light); margin-bottom:24px;">
+          The &ldquo;Unified Operations Center&rdquo; Philosophy
+        </p>
+
+        <div class="card" style="flex:1;">
+          <div class="card-title" style="margin-bottom:16px;">Saudi Aramco &amp; AVEVA</div>
+          <p class="t-body-sm" style="margin-bottom:20px;">
+            Aramco managed to integrate <span class="t-white">thousands of data points</span> into a single Integrated Digital Center (IDC).
+          </p>
+          <div style="padding:16px; background:var(--navy-deep); border:1px solid var(--cyan-border); margin-bottom:16px;">
+            <p class="t-body-sm" style="color:var(--cyan);">
+              Result: Real-time visibility, predictive maintenance, and a massive reduction in operational uncertainty.
+            </p>
+          </div>
+          <p class="t-body-sm" style="color:var(--text-muted); font-style:italic;">
+            ALIGN applies this same philosophy &mdash; unified data, unified operations, unified decision-making &mdash; to the largest infrastructure corridor of the 21st century.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-num"><span>05</span> / 17</div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 6: THE STRATEGIC CORTEX — THREE SYNCHRONIZED FORCES
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="slide bg-deep bg-grid" id="slide-6">
+  <div class="slide-inner">
+    <div class="t-label">The Solution</div>
+    <h2 class="t-title">The IMEC Intelligence and Feasibility Center</h2>
+    <p class="t-subtitle">Infrastructure at this scale requires more than capital &mdash; it requires <span class="t-accent">Certainty</span>.</p>
+
+    <div class="flex flex-1 gap-32" style="margin-top:8px;">
+      <!-- Three Force Cards -->
+      <div class="flex flex-col gap-24" style="width:62%;">
+        <!-- Force 1 -->
+        <div class="card flex-1 flex flex-col">
+          <div class="flex items-center gap-16 mb-16">
+            <span class="tag">Force 1</span>
+            <span style="font-family:var(--serif); font-size:22px; color:var(--white); font-weight:400;">TFT &mdash; Technical Financial Team</span>
+          </div>
+          <p class="t-body-sm">Senior EPC and finance leaders translating vision into bankable feasibility studies and SPV structures. They produce a <span class="t-accent">Single Financial Language</span> across all sectors &mdash; the bankable output that global capital requires.</p>
+        </div>
+
+        <!-- Force 2 -->
+        <div class="card flex-1 flex flex-col">
+          <div class="flex items-center gap-16 mb-16">
+            <span class="tag">Force 2</span>
+            <span style="font-family:var(--serif); font-size:22px; color:var(--white); font-weight:400;">Corridor X &mdash; Infrastructure of the Future</span>
+          </div>
+          <p class="t-body-sm">The innovation lab identifying and evaluating deployment-ready technologies (<span class="t-cyan">TRL 5&ndash;9</span>) that will define the corridor for decades. Four domains: Energy, Water, Transportation, Risk Management of the Future.</p>
+        </div>
+
+        <!-- Force 3 -->
+        <div class="card card-cyan flex-1 flex flex-col">
+          <div class="flex items-center gap-16 mb-16">
+            <span class="tag tag-cyan">Force 3</span>
+            <span style="font-family:var(--serif); font-size:22px; color:var(--white); font-weight:400;">Intelligence &amp; Data &mdash; The Nervous System</span>
+          </div>
+          <p class="t-body-sm">The AI-powered research engine that serves Forces 1 &amp; 2. Provides the data infrastructure for data-driven future scenario analysis so the other teams can perform rigorous Due Diligence through the <span class="t-cyan">Digital Twin</span>.</p>
+        </div>
+      </div>
+
+      <!-- Convergence Diagram -->
+      <div class="flex flex-col justify-center items-center" style="width:38%;">
+        <img src="assets/diagrams/cortex-diagram.svg" alt="Three Forces Converging" style="width:100%; max-height:450px;">
+      </div>
+    </div>
+
+    <div class="slide-num"><span>06</span> / 17</div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 7: FORCES 1 & 2 — THE SKELETON AND MUSCLE
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="slide bg-dark bg-grid" id="slide-7">
+  <div class="slide-inner accent-top">
+    <div class="t-label">Detail &mdash; Forces 1 &amp; 2</div>
+    <h2 class="t-title">Building the Skeleton and Muscle</h2>
+
+    <div class="flex gap-40 flex-1" style="margin-top:32px;">
+      <!-- Force 1 -->
+      <div class="flex-1 flex flex-col">
+        <div class="flex items-center gap-12 mb-24">
+          <span class="tag">Force 1</span>
+          <span style="font-family:var(--serif); font-size:20px; color:var(--gold-light); font-weight:400;">TFT: The Feasibility Engine</span>
+        </div>
+
+        <p class="t-body-sm mb-24">Every project evaluated through the Feasibility Center using:</p>
+
+        <div class="flex flex-col gap-16">
+          <div class="flex items-start gap-12">
+            <div style="min-width:4px; height:4px; background:var(--gold); margin-top:8px;"></div>
+            <p class="t-body-sm"><span class="t-white">Advanced Analytical Tools:</span> Genetic algorithms and multi-agent simulations for maximum optimization</p>
+          </div>
+          <div class="flex items-start gap-12">
+            <div style="min-width:4px; height:4px; background:var(--gold); margin-top:8px;"></div>
+            <p class="t-body-sm"><span class="t-white">Scenario &amp; Risk Analysis:</span> Multi-dimensional review (technical, financial, regulatory, geopolitical)</p>
+          </div>
+          <div class="flex items-start gap-12">
+            <div style="min-width:4px; height:4px; background:var(--gold); margin-top:8px;"></div>
+            <p class="t-body-sm"><span class="t-white">Domain Expertise:</span> Leading experts and academic institutions within ALIGN and the Round Table</p>
+          </div>
+        </div>
+
+        <div style="margin-top:auto; padding:16px; border:1px solid var(--gold-border); background:var(--gold-dim);">
+          <p style="font-family:var(--mono); font-size:10px; letter-spacing:2px; color:var(--gold); margin-bottom:8px;">OUTPUT</p>
+          <p class="t-body-sm" style="color:var(--text-primary);">Standardized bankable feasibility studies across Energy, Water, Agri, Critical Minerals, Logistics, Digital</p>
+        </div>
+      </div>
+
+      <!-- Vertical divider -->
+      <div style="width:1px; background:var(--gold-border);"></div>
+
+      <!-- Force 2 -->
+      <div class="flex-1 flex flex-col">
+        <div class="flex items-center gap-12 mb-24">
+          <span class="tag">Force 2</span>
+          <span style="font-family:var(--serif); font-size:20px; color:var(--gold-light); font-weight:400;">Corridor X: Infrastructure of the Future</span>
+        </div>
+
+        <p class="t-body-sm mb-24">Not lab research &mdash; <span class="t-white">deployment-ready solutions</span> (TRL 5&ndash;9):</p>
+
+        <div class="flex flex-col gap-16">
+          <div class="card" style="padding:16px 20px;">
+            <p style="font-family:var(--mono); font-size:10px; letter-spacing:1px; color:var(--cyan); margin-bottom:4px;">ENERGY OF THE FUTURE</p>
+            <p class="t-body-sm">Hydrogen infrastructure, SMRs, Energy-as-a-Service, advanced storage, floating solar, HVDC</p>
+          </div>
+          <div class="card" style="padding:16px 20px;">
+            <p style="font-family:var(--mono); font-size:10px; letter-spacing:1px; color:var(--cyan); margin-bottom:4px;">WATER OF THE FUTURE</p>
+            <p class="t-body-sm">Circular water systems, smart desalination, climate-resilient infrastructure, agrivoltaics</p>
+          </div>
+          <div class="card" style="padding:16px 20px;">
+            <p style="font-family:var(--mono); font-size:10px; letter-spacing:1px; color:var(--cyan); margin-bottom:4px;">TRANSPORTATION OF THE FUTURE</p>
+            <p class="t-body-sm">Autonomous cross-border freight, smart dry ports, robotic logistics, smart tunnels</p>
+          </div>
+          <div class="card" style="padding:16px 20px;">
+            <p style="font-family:var(--mono); font-size:10px; letter-spacing:1px; color:var(--cyan); margin-bottom:4px;">RISK MANAGEMENT OF THE FUTURE</p>
+            <p class="t-body-sm">Cyber for critical infrastructure, trans-national control rooms, AI anomaly detection</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="t-body-sm" style="color:var(--text-muted); margin-top:20px; font-style:italic;">
+      These two teams define WHAT to build and WHETHER it&rsquo;s viable. They need Force 3 to do it.
+    </p>
+
+    <div class="slide-num"><span>07</span> / 17</div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 8: FORCE 3 — INTELLIGENCE & DATA: THE BRAIN
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="slide bg-deep bg-grid" id="slide-8">
+  <div class="slide-inner">
+    <div class="t-label">Detail &mdash; Force 3</div>
+    <h2 class="t-title" style="font-size:44px;">Intelligence &amp; Data: The Brain, Nervous System &amp; Digital Twin</h2>
+    <p class="t-subtitle" style="font-size:16px;">Building the cognitive infrastructure that makes the entire organism think, sense, and adapt.</p>
+
+    <div class="flex gap-32 flex-1" style="margin-top:8px;">
+      <!-- Pillar 1: HUMINT -->
+      <div class="flex-1 flex flex-col">
+        <div class="card flex-1 flex flex-col" style="border-color:var(--gold-border);">
+          <div class="tag mb-16">Pillar 1 &mdash; HUMINT Infrastructure</div>
+          <p style="font-family:var(--serif); font-size:18px; color:var(--white); margin-bottom:16px; font-weight:400;">Data for Human Intelligence Networks</p>
+          <div class="flex flex-col gap-10" style="flex:1;">
+            <div class="flex items-start gap-10">
+              <div style="min-width:4px;height:4px;background:var(--gold);margin-top:8px;"></div>
+              <p class="t-body-sm">Trusted agents and regional experts feeding ground-truth data</p>
+            </div>
+            <div class="flex items-start gap-10">
+              <div style="min-width:4px;height:4px;background:var(--gold);margin-top:8px;"></div>
+              <p class="t-body-sm">Government and regulatory contact networks mapped and accessible</p>
+            </div>
+            <div class="flex items-start gap-10">
+              <div style="min-width:4px;height:4px;background:var(--gold);margin-top:8px;"></div>
+              <p class="t-body-sm">Energy and logistics operator intelligence indexed and searchable</p>
+            </div>
+            <div class="flex items-start gap-10">
+              <div style="min-width:4px;height:4px;background:var(--gold);margin-top:8px;"></div>
+              <p class="t-body-sm">Financial institution signals aggregated</p>
+            </div>
+            <div class="flex items-start gap-10">
+              <div style="min-width:4px;height:4px;background:var(--gold);margin-top:8px;"></div>
+              <p class="t-body-sm">Non-public information channels integrated</p>
+            </div>
+          </div>
+          <div style="margin-top:16px; padding:10px 14px; background:var(--gold-dim); border:1px solid var(--gold-border);">
+            <p style="font-family:var(--mono); font-size:10px; color:var(--gold);">HUMANS COLLECT &amp; INTERPRET</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center: Convergence -->
+      <div class="flex flex-col justify-center items-center" style="width:320px;">
+        <img src="assets/diagrams/dual-pillar.svg" alt="Dual Pillar Architecture" style="width:100%; max-height:380px;">
+      </div>
+
+      <!-- Pillar 2: SIGINT -->
+      <div class="flex-1 flex flex-col">
+        <div class="card card-cyan flex-1 flex flex-col" style="border-color:var(--cyan-border);">
+          <div class="tag tag-cyan mb-16">Pillar 2 &mdash; SIGINT Infrastructure</div>
+          <p style="font-family:var(--serif); font-size:18px; color:var(--white); margin-bottom:16px; font-weight:400;">AI-Powered Collection &amp; Analysis</p>
+          <div class="flex flex-col gap-10" style="flex:1;">
+            <div class="flex items-start gap-10">
+              <div style="min-width:4px;height:4px;background:var(--cyan);margin-top:8px;"></div>
+              <p class="t-body-sm">Proprietary AI agents &mdash; real-time global source monitoring 24/7</p>
+            </div>
+            <div class="flex items-start gap-10">
+              <div style="min-width:4px;height:4px;background:var(--cyan);margin-top:8px;"></div>
+              <p class="t-body-sm">Regulatory update scanning across all corridor nations</p>
+            </div>
+            <div class="flex items-start gap-10">
+              <div style="min-width:4px;height:4px;background:var(--cyan);margin-top:8px;"></div>
+              <p class="t-body-sm">Economic and geopolitical signal detection</p>
+            </div>
+            <div class="flex items-start gap-10">
+              <div style="min-width:4px;height:4px;background:var(--cyan);margin-top:8px;"></div>
+              <p class="t-body-sm">Capital movement and investment flow tracking</p>
+            </div>
+            <div class="flex items-start gap-10">
+              <div style="min-width:4px;height:4px;background:var(--cyan);margin-top:8px;"></div>
+              <p class="t-body-sm">Automated cross-referencing and validation across all sources</p>
+            </div>
+          </div>
+          <div style="margin-top:16px; padding:10px 14px; background:var(--cyan-dim); border:1px solid var(--cyan-border);">
+            <p style="font-family:var(--mono); font-size:10px; color:var(--cyan);">AI SCANS &amp; VALIDATES</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- System output row -->
+    <div class="flex gap-16" style="margin-top:20px;">
+      <div style="flex:1; padding:12px 16px; border:1px solid var(--gold-border); background:var(--navy-card);">
+        <p style="font-family:var(--mono); font-size:10px; color:var(--gold); letter-spacing:1px; margin-bottom:4px;">DIGITAL TWIN</p>
+        <p class="t-body-sm" style="font-size:12px;">Real-time virtual corridor for continuous monitoring and simulation</p>
+      </div>
+      <div style="flex:1; padding:12px 16px; border:1px solid var(--gold-border); background:var(--navy-card);">
+        <p style="font-family:var(--mono); font-size:10px; color:var(--gold); letter-spacing:1px; margin-bottom:4px;">GENETIC ALGORITHMS</p>
+        <p class="t-body-sm" style="font-size:12px;">Thousands of optimized configurations for maximum efficiency</p>
+      </div>
+      <div style="flex:1; padding:12px 16px; border:1px solid var(--gold-border); background:var(--navy-card);">
+        <p style="font-family:var(--mono); font-size:10px; color:var(--gold); letter-spacing:1px; margin-bottom:4px;">MULTI-AGENT SIMULATION</p>
+        <p class="t-body-sm" style="font-size:12px;">Dynamic analysis of freight, energy, and data flows</p>
+      </div>
+      <div style="flex:1; padding:12px 16px; border:1px solid var(--gold-border); background:var(--navy-card);">
+        <p style="font-family:var(--mono); font-size:10px; color:var(--gold); letter-spacing:1px; margin-bottom:4px;">SMART ECOSYSTEM</p>
+        <p class="t-body-sm" style="font-size:12px;">Integrated hydrogen, solar, IoT with resilience by design</p>
+      </div>
+    </div>
+
+    <div class="slide-num"><span>08</span> / 17</div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 9: THE DELIVERABLES
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="slide bg-dark bg-grid" id="slide-9">
+  <div class="slide-inner accent-top">
+    <div class="t-label">Output</div>
+    <h2 class="t-title">Actionable Output: From Intelligence to Investment</h2>
+    <p class="t-subtitle">Three forces, three deliverables &mdash; one integrated system producing <span class="t-accent">Certainty</span>.</p>
+
+    <div class="flex gap-32 flex-1" style="margin-top:16px;">
+      <!-- Deliverable 1 -->
+      <div class="card flex-1 flex flex-col">
+        <div class="tag mb-16">Force 1 Deliverable</div>
+        <h3 style="font-family:var(--serif); font-size:26px; font-weight:400; color:var(--white); margin-bottom:8px;">
+          Bankable Feasibility Studies
+        </h3>
+        <div class="divider" style="margin:12px 0 16px;"></div>
+        <p class="t-body-sm" style="flex:1;">
+          Standardized feasibility assessments in a <span class="t-accent">Single Financial Language</span> across all critical sectors: Energy, Water, Agri, Critical Minerals, Logistics, Digital. Risk transparency, financial structuring, and bankable output ready for global capital markets.
+        </p>
+        <div style="margin-top:20px; padding:12px 16px; background:var(--gold-dim); border:1px solid var(--gold-border);">
+          <p class="t-body-sm" style="color:var(--gold-light); font-weight:400;">This is what investors need to commit.</p>
+        </div>
+      </div>
+
+      <!-- Deliverable 2 -->
+      <div class="card flex-1 flex flex-col">
+        <div class="tag mb-16">Force 2 Deliverable</div>
+        <h3 style="font-family:var(--serif); font-size:26px; font-weight:400; color:var(--white); margin-bottom:8px;">
+          Strategic Technological Roadmap
+        </h3>
+        <div class="divider" style="margin:12px 0 16px;"></div>
+        <p class="t-body-sm" style="flex:1;">
+          A comprehensive strategic technological roadmap for the corridor &mdash; mapping which <span class="t-cyan">TRL 5&ndash;9</span> technologies deploy where, when, and in what sequence. Covering four domains: Energy, Water, Transportation, and Risk Management of the Future.
+        </p>
+        <div style="margin-top:20px; padding:12px 16px; background:var(--gold-dim); border:1px solid var(--gold-border);">
+          <p class="t-body-sm" style="color:var(--gold-light); font-weight:400;">Built with tomorrow&rsquo;s solutions, not yesterday&rsquo;s.</p>
+        </div>
+      </div>
+
+      <!-- Deliverable 3 -->
+      <div class="card card-cyan flex-1 flex flex-col">
+        <div class="tag tag-cyan mb-16">Force 3 Deliverable</div>
+        <h3 style="font-family:var(--serif); font-size:26px; font-weight:400; color:var(--white); margin-bottom:8px;">
+          Digital Twin / Unified Operations Center
+        </h3>
+        <div class="divider" style="margin:12px 0 16px; background:var(--cyan);"></div>
+        <p class="t-body-sm" style="flex:1;">
+          A real-time intelligence and command platform combining human and AI-sourced data into a unified operational stream. The <span class="t-cyan">Control Room</span> where corridor-wide data flows converge, scenarios are simulated, risks are flagged in real-time, and strategic decisions are made.
+        </p>
+        <div style="margin-top:20px; padding:12px 16px; background:var(--cyan-dim); border:1px solid var(--cyan-border);">
+          <p class="t-body-sm" style="color:var(--cyan); font-weight:400;">The nerve center of the entire joint venture.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-num"><span>09</span> / 17</div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 10: THE ALIGN TEAM — FOUNDERS & INTELLIGENCE
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="slide bg-mid" id="slide-10">
+  <div class="slide-inner accent-top">
+    <div class="t-label">Trust</div>
+    <h2 class="t-title" style="font-size:42px;">The ALIGN Team &mdash; 2,000+ Years of Excellence</h2>
+    <p class="t-subtitle" style="font-size:16px;">Founders, Strategic Direction &amp; Intelligence Leadership</p>
+
+    <div class="flex gap-40 flex-1" style="margin-top:12px;">
+      <!-- Founders -->
+      <div class="flex-1 flex flex-col">
+        <div class="tag mb-16">Founders &amp; Strategic Direction</div>
+        <div style="height:1px; background:var(--gold-border); margin-bottom:16px;"></div>
+
+        <div class="team-member" style="margin-bottom:14px;">
+          <a href="https://www.linkedin.com/in/dror-barak-950aa910/" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--gold);">Dror Barak</a><br>
+          <span class="role" style="color:var(--gold); font-size:11px;">Founding Partner, Align Capital &amp; Align Intelligence</span><br>
+          <span class="role">Strategic architect of the IMEC Strategic Cortex platform; leads capital strategy, intelligence architecture, and cross-border infrastructure initiatives that connect finance, data, and execution.</span>
+        </div>
+
+        <div class="team-member" style="margin-bottom:14px;">
+          <a href="https://www.linkedin.com/in/avital-leibovich-10a6313a/" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--gold);">Avital Leibovich</a><br>
+          <span class="role" style="color:var(--gold); font-size:11px;">Partner, Align Capital &amp; Align Intelligence</span><br>
+          <span class="role">Diplomatic and communications leader with deep experience in geopolitical engagement, international relations, and strategic narrative coordination; former senior IDF spokesperson.</span>
+        </div>
+
+        <div class="team-member" style="margin-bottom:14px;">
+          <a href="https://www.linkedin.com/in/williamwechsler/" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--gold);">William F. Wechsler</a><br>
+          <span class="role" style="color:var(--gold); font-size:11px;">Senior Director, Rafik Hariri Center &amp; N7 Initiative, Atlantic Council</span><br>
+          <span class="role">U.S. policy and regional integration expert focused on security strategy, multilateral cooperation frameworks, and long-term normalization initiatives.</span>
+        </div>
+
+        <div class="team-member" style="margin-bottom:14px;">
+          <a href="https://www.linkedin.com/in/gileadsher/" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--gold);">Gilad Sher</a><br>
+          <span class="role" style="color:var(--gold); font-size:11px;">Align Capital &amp; Intelligence</span><br>
+          <span class="role">Senior advisor with broad expertise in governance, legal strategy, and national security policy; contributes to shaping strategic alignment, institutional architecture, and corridor intelligence governance.</span>
+        </div>
+
+        <div class="team-member" style="margin-bottom:14px;">
+          <a href="https://ch.linkedin.com/in/joelle-fiss-8b27395" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--gold);">Joelle Fiss</a><br>
+          <span class="role" style="color:var(--gold); font-size:11px;">D&eacute;put&eacute;e PLR, Grand Conseil &amp; Human Rights Analyst</span><br>
+          <span class="role">Human rights expert and policy advisor with 20+ years across the European Parliament, international NGOs, and governance; specializes in multilateral diplomacy, regulatory frameworks, and regional integration strategy.</span>
+        </div>
+      </div>
+
+      <!-- Vertical divider -->
+      <div style="width:1px; background:var(--gold-border);"></div>
+
+      <!-- Intelligence & Data -->
+      <div class="flex-1 flex flex-col">
+        <div class="tag tag-cyan mb-16">Intelligence &amp; Data Leadership</div>
+        <div style="height:1px; background:var(--cyan-border); margin-bottom:16px;"></div>
+
+        <div class="team-member" style="margin-bottom:14px;">
+          <a href="https://www.linkedin.com/in/jsagir/" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--cyan);">Jonathan Sagir</a><br>
+          <span class="role" style="color:var(--cyan); font-size:11px;">Co-Founder Align X: AI &amp; Intelligence Strategy Lead</span><br>
+          <span class="role">Leads IMEC&rsquo;s AI-driven intelligence strategy, integrating predictive analytics and real-time data for decision support, strategic foresight, and risk modeling across sectors.</span>
+        </div>
+
+        <div class="team-member" style="margin-bottom:14px;">
+          <span class="name">Guy Shapran</span><br>
+          <span class="role" style="color:var(--cyan); font-size:11px;">Former Commander, Sayeret Matkal</span><br>
+          <span class="role">Elite operational strategist with experience in intelligence operations, mission planning, and integrated execution frameworks.</span>
+        </div>
+
+        <div class="team-member" style="margin-bottom:14px;">
+          <a href="https://www.linkedin.com/in/eran-beck-640292179/" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--cyan);">Eran Bak</a><br>
+          <span class="role" style="color:var(--cyan); font-size:11px;">Senior Intelligence Officer (Unit 81, IDF)</span><br>
+          <span class="role">Expert in advanced tech intelligence systems, cyber-enabled analysis, and critical data operations supporting security and infrastructure decisions.</span>
+        </div>
+
+        <div class="team-member" style="margin-bottom:14px;">
+          <a href="https://www.linkedin.com/in/yaronraz/" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--cyan);">Yaron Raz</a><br>
+          <span class="role" style="color:var(--cyan); font-size:11px;">Senior Vice President, Matrix</span><br>
+          <span class="role">Executive in enterprise digital systems and infrastructure integration, with a focus on cyber-aligned technology frameworks.</span>
+        </div>
+
+        <div class="team-member" style="margin-bottom:14px;">
+          <a href="https://www.linkedin.com/in/oren-bar-4353956/" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--cyan);">Oren Bar</a><br>
+          <span class="role" style="color:var(--cyan); font-size:11px;">Chief Executive Officer, BV Tech</span><br>
+          <span class="role">Leader in operational systems and security technologies tailored for complex infrastructure environments.</span>
+        </div>
+
+        <div class="team-member" style="margin-bottom:14px;">
+          <a href="https://il.linkedin.com/in/orensagi" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--cyan);">Oren Sagi</a><br>
+          <span class="role" style="color:var(--cyan); font-size:11px;">Chief Executive Officer, Cisco Israel</span><br>
+          <span class="role">Strategic technology leader driving enterprise connectivity, networking architectures, and infrastructure resilience.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-num"><span>10</span> / 17</div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 11: THE ALIGN TEAM — ESI & CORRIDOR X
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="slide bg-mid bg-grid" id="slide-11">
+  <div class="slide-inner accent-top">
+    <div class="t-label">Trust</div>
+    <h2 class="t-title" style="font-size:42px;">The ALIGN Team &mdash; Engineering &amp; Innovation</h2>
+    <p class="t-subtitle" style="font-size:16px;">Strategic Infrastructure &amp; Corridor X Technology Leadership</p>
+
+    <div class="flex gap-40 flex-1" style="margin-top:12px;">
+      <!-- ESI -->
+      <div class="flex-1 flex flex-col">
+        <div class="tag mb-16">Engineering &amp; Strategic Infrastructure (ESI)</div>
+        <div style="height:1px; background:var(--gold-border); margin-bottom:16px;"></div>
+
+        <div class="team-member" style="margin-bottom:12px;">
+          <a href="https://www.linkedin.com/in/malachi-alper-43a70336/" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--gold);">Malachi Alper</a><br>
+          <span class="role" style="color:var(--gold); font-size:11px;">Infrastructure Strategy Lead</span><br>
+          <span class="role">Senior executive with leadership across major public companies; specializes in strategic infrastructure planning and operational execution excellence.</span>
+        </div>
+
+        <div class="team-member" style="margin-bottom:12px;">
+          <a href="https://www.linkedin.com/in/nimrod-sheffer-343461296/" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--gold);">Nimrod Sheffer</a><br>
+          <span class="role" style="color:var(--gold); font-size:11px;">Major General (Res.), Former Head of Planning Directorate (IAF); Former CEO, IAI</span><br>
+          <span class="role">Seasoned defense strategist and systems architect experienced in national-level planning, aerospace systems, and integrated execution.</span>
+        </div>
+
+        <div class="team-member" style="margin-bottom:12px;">
+          <a href="https://www.linkedin.com/in/doronavital/" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--gold);">Doron Avital</a><br>
+          <span class="role" style="color:var(--gold); font-size:11px;">Former Commander, Sayeret Matkal; Former Member of Parliament</span><br>
+          <span class="role">Combines elite operational experience with high-level governance insight, specializing in tactical resilience and strategic planning.</span>
+        </div>
+
+        <div class="team-member" style="margin-bottom:12px;">
+          <a href="https://en.wikipedia.org/wiki/David_Tzur" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--gold);">Tzuri David</a><br>
+          <span class="role" style="color:var(--gold); font-size:11px;">Former Police Commissioner &amp; Border Police Commander</span><br>
+          <span class="role">Expert in national security, protection frameworks, and critical infrastructure risk management.</span>
+        </div>
+
+        <div class="team-member" style="margin-bottom:12px;">
+          <a href="https://www.linkedin.com/in/lior-lobel-470a5416b/" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--gold);">Lior Lovel</a><br>
+          <span class="role" style="color:var(--gold); font-size:11px;">Senior Operations Executive</span><br>
+          <span class="role">Leader with robust experience in large-scale industrial operations, energy-water systems, and infrastructure execution.</span>
+        </div>
+
+        <div class="team-member" style="margin-bottom:12px;">
+          <a href="https://www.linkedin.com/in/glenn-yago-09b9291/" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--gold);">Prof. Glenn Yago</a><br>
+          <span class="role" style="color:var(--gold); font-size:11px;">Macroeconomics &amp; Capital Markets Expert</span><br>
+          <span class="role">Strategist in infrastructure finance, economic modeling, and cross-border capital integration methods.</span>
+        </div>
+
+        <div class="team-member" style="margin-bottom:12px;">
+          <a href="https://fr.linkedin.com/in/frederic-dabe-469aa5103" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--gold);">Frederic Dabe</a><br>
+          <span class="role" style="color:var(--gold); font-size:11px;">Engineering &amp; Energy Systems Leader</span><br>
+          <span class="role">Senior executive with expertise in energy systems engineering, utilities integration, and large technical infrastructure delivery.</span>
+        </div>
+      </div>
+
+      <!-- Vertical divider -->
+      <div style="width:1px; background:var(--gold-border);"></div>
+
+      <!-- Corridor X -->
+      <div class="flex-1 flex flex-col">
+        <div class="tag mb-16">Corridor X &mdash; Strategic Technology &amp; Innovation</div>
+        <div style="height:1px; background:var(--gold-border); margin-bottom:16px;"></div>
+
+        <div class="team-member" style="margin-bottom:12px;">
+          <a href="https://www.linkedin.com/in/amnon-dekel-10101010/" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--cyan);">Prof. Amnon Dekel</a><br>
+          <span class="role" style="color:var(--cyan); font-size:11px;">Advanced Systems Research Lead</span><br>
+          <span class="role">Academic and systems engineering leader focused on scalable, resilient infrastructure technologies and adaptive system design.</span>
+        </div>
+
+        <div class="team-member" style="margin-bottom:12px;">
+          <a href="https://www.linkedin.com/in/michael-marks-6901391a5/" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--cyan);">Michael Marks</a><br>
+          <span class="role" style="color:var(--cyan); font-size:11px;">Strategic Technology Advisor, Prime Minister&rsquo;s Office</span><br>
+          <span class="role">Technology strategy leader aligning innovation policy with national infrastructure priorities and future tech roadmaps.</span>
+        </div>
+
+        <div class="team-member" style="margin-bottom:12px;">
+          <a href="https://il.linkedin.com/in/carmel-sofer-8a34a91" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--cyan);">Prof. Carmel Sopher</a><br>
+          <span class="role" style="color:var(--cyan); font-size:11px;">Innovation &amp; Infrastructure Systems, Ben-Gurion University</span><br>
+          <span class="role">Academic expert in innovation frameworks and integration of advanced infrastructure systems into regional architectures.</span>
+        </div>
+
+        <div class="team-member" style="margin-bottom:12px;">
+          <a href="https://il.linkedin.com/in/baraksharir" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--cyan);">Barak Shrir</a><br>
+          <span class="role" style="color:var(--cyan); font-size:11px;">Technology Strategy Lead</span><br>
+          <span class="role">Senior strategist in enterprise and industrial digital transformation, technology deployment, and systems optimization.</span>
+        </div>
+
+        <div class="team-member" style="margin-bottom:12px;">
+          <a href="https://www.linkedin.com/in/stan-devries-6127aa/" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--cyan);">Stan DeVries</a><br>
+          <span class="role" style="color:var(--cyan); font-size:11px;">Industrial &amp; Infrastructure Technology Executive</span><br>
+          <span class="role">Executive leader with experience across industrial tech platforms, focusing on integrated system roll-outs and infrastructure automation.</span>
+        </div>
+
+        <div class="team-member" style="margin-bottom:12px;">
+          <a href="https://www.linkedin.com/in/asaad-joubran-5a6b862/" target="_blank" class="name" style="color:inherit; text-decoration:none; border-bottom:1px dotted var(--cyan);">As&rsquo;ad Jubran</a><br>
+          <span class="role" style="color:var(--cyan); font-size:11px;">Senior Energy Sector Executive</span><br>
+          <span class="role">Energy infrastructure leader with expertise in power generation, utility operations, and strategic energy system planning.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-num"><span>11</span> / 17</div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 12: THE ROUND TABLE
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="slide bg-deep bg-grid" id="slide-12">
+  <div class="slide-inner">
+    <div class="t-label">Network</div>
+    <h2 class="t-title">The Round Table: Global Connectivity</h2>
+    <p class="t-subtitle">ALIGN sits at the center of a global ecosystem. <span class="t-accent">Empty seats at the table &mdash; by design.</span></p>
+
+    <div class="flex flex-1 items-center justify-center" style="margin-top:16px;">
+      <svg viewBox="0 0 800 500" width="800" height="500">
+        <!-- Center: ALIGN -->
+        <circle cx="400" cy="250" r="70" fill="var(--gold-dim)" stroke="var(--gold)" stroke-width="1.5"/>
+        <text x="400" y="240" text-anchor="middle" font-family="Cormorant Garamond" font-size="22" fill="var(--white)" font-weight="400">ALIGN</text>
+        <text x="400" y="262" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="var(--gold)" letter-spacing="2">STRATEGIC CORTEX</text>
+
+        <!-- Orbital ring -->
+        <circle cx="400" cy="250" r="180" fill="none" stroke="var(--gold-border)" stroke-width="0.5" stroke-dasharray="4,6"/>
+
+        <!-- Partner: S&P Global -->
+        <line x1="400" y1="70" x2="400" y2="180" stroke="var(--gold)" stroke-width="0.5" opacity="0.4"/>
+        <circle cx="400" cy="70" r="36" fill="var(--navy-card)" stroke="var(--gold-border)" stroke-width="1"/>
+        <text x="400" y="66" text-anchor="middle" font-family="IBM Plex Sans" font-size="11" fill="var(--white)" font-weight="500">S&amp;P</text>
+        <text x="400" y="80" text-anchor="middle" font-family="IBM Plex Sans" font-size="11" fill="var(--white)" font-weight="500">Global</text>
+
+        <!-- Partner: Cisco -->
+        <line x1="572" y1="120" x2="462" y2="200" stroke="var(--gold)" stroke-width="0.5" opacity="0.4"/>
+        <circle cx="590" cy="110" r="36" fill="var(--navy-card)" stroke="var(--gold-border)" stroke-width="1"/>
+        <text x="590" y="114" text-anchor="middle" font-family="IBM Plex Sans" font-size="12" fill="var(--white)" font-weight="500">Cisco</text>
+
+        <!-- Partner: Atlantic Council -->
+        <line x1="610" y1="280" x2="470" y2="260" stroke="var(--gold)" stroke-width="0.5" opacity="0.4"/>
+        <circle cx="630" cy="290" r="36" fill="var(--navy-card)" stroke="var(--gold-border)" stroke-width="1"/>
+        <text x="630" y="286" text-anchor="middle" font-family="IBM Plex Sans" font-size="10" fill="var(--white)" font-weight="500">Atlantic</text>
+        <text x="630" y="300" text-anchor="middle" font-family="IBM Plex Sans" font-size="10" fill="var(--white)" font-weight="500">Council</text>
+
+        <!-- Partner: Technion -->
+        <line x1="200" y1="140" x2="335" y2="210" stroke="var(--cyan)" stroke-width="0.5" opacity="0.4"/>
+        <circle cx="185" cy="130" r="36" fill="var(--navy-card)" stroke="var(--cyan-border)" stroke-width="1"/>
+        <text x="185" y="134" text-anchor="middle" font-family="IBM Plex Sans" font-size="11" fill="var(--white)" font-weight="500">Technion</text>
+
+        <!-- Partner: BGU -->
+        <line x1="170" y1="310" x2="332" y2="270" stroke="var(--cyan)" stroke-width="0.5" opacity="0.4"/>
+        <circle cx="155" cy="320" r="36" fill="var(--navy-card)" stroke="var(--cyan-border)" stroke-width="1"/>
+        <text x="155" y="316" text-anchor="middle" font-family="IBM Plex Sans" font-size="10" fill="var(--white)" font-weight="500">Ben-Gurion</text>
+        <text x="155" y="330" text-anchor="middle" font-family="IBM Plex Sans" font-size="10" fill="var(--white)" font-weight="500">University</text>
+
+        <!-- Partner: Hebrew University -->
+        <line x1="100" y1="220" x2="330" y2="240" stroke="var(--cyan)" stroke-width="0.5" opacity="0.4"/>
+        <circle cx="85" cy="220" r="36" fill="var(--navy-card)" stroke="var(--cyan-border)" stroke-width="1"/>
+        <text x="85" y="216" text-anchor="middle" font-family="IBM Plex Sans" font-size="9" fill="var(--white)" font-weight="500">Hebrew</text>
+        <text x="85" y="228" text-anchor="middle" font-family="IBM Plex Sans" font-size="9" fill="var(--white)" font-weight="500">University</text>
+
+        <!-- Partner: Sapir College -->
+        <line x1="300" y1="430" x2="375" y2="320" stroke="var(--cyan)" stroke-width="0.5" opacity="0.4"/>
+        <circle cx="300" cy="440" r="32" fill="var(--navy-card)" stroke="var(--cyan-border)" stroke-width="1"/>
+        <text x="300" y="436" text-anchor="middle" font-family="IBM Plex Sans" font-size="10" fill="var(--white)" font-weight="500">Sapir</text>
+        <text x="300" y="450" text-anchor="middle" font-family="IBM Plex Sans" font-size="10" fill="var(--white)" font-weight="500">College</text>
+
+        <!-- Partner: Western Galilee College -->
+        <line x1="500" y1="430" x2="425" y2="320" stroke="var(--cyan)" stroke-width="0.5" opacity="0.4"/>
+        <circle cx="500" cy="440" r="32" fill="var(--navy-card)" stroke="var(--cyan-border)" stroke-width="1"/>
+        <text x="500" y="432" text-anchor="middle" font-family="IBM Plex Sans" font-size="9" fill="var(--white)" font-weight="500">Western</text>
+        <text x="500" y="444" text-anchor="middle" font-family="IBM Plex Sans" font-size="9" fill="var(--white)" font-weight="500">Galilee</text>
+        <text x="500" y="456" text-anchor="middle" font-family="IBM Plex Sans" font-size="9" fill="var(--white)" font-weight="500">College</text>
+
+        <!-- Empty seats (dashed circles) -->
+        <circle cx="700" cy="200" r="28" fill="none" stroke="var(--gold)" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
+        <text x="700" y="204" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="var(--text-muted)" letter-spacing="1">OPEN</text>
+
+        <circle cx="700" cy="380" r="28" fill="none" stroke="var(--gold)" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
+        <text x="700" y="384" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="var(--text-muted)" letter-spacing="1">OPEN</text>
+      </svg>
+    </div>
+
+    <div style="text-align:center; margin-top:8px;">
+      <p class="t-body-sm" style="color:var(--text-muted); max-width:700px; margin:0 auto;">
+        The Round Table is not decoration &mdash; it&rsquo;s <span class="t-white">operational infrastructure</span>. Each partner contributes domain expertise, regional access, or capital networks that strengthen the Cortex.
+      </p>
+    </div>
+
+    <div class="slide-num"><span>12</span> / 17</div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 13: MOMENTUM — ALREADY RUNNING
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="slide bg-dark bg-grid" id="slide-13">
+  <div class="slide-inner accent-top">
+    <div class="t-label">Proof</div>
+    <h2 class="t-title">We Didn&rsquo;t Wait for Money</h2>
+    <p class="t-subtitle" style="font-family:var(--serif); font-size:28px; color:var(--gold-light); font-weight:300;">The Machine Is Already Running</p>
+
+    <div class="flex flex-col gap-32 flex-1 justify-center" style="max-width:1100px; margin-top:24px;">
+      <!-- Milestone 1 -->
+      <div class="flex items-center gap-32">
+        <div style="min-width:64px; text-align:right;">
+          <div style="width:48px; height:48px; border:2px solid var(--gold); display:flex; align-items:center; justify-content:center; margin-left:auto;">
+            <svg width="20" height="16" viewBox="0 0 20 16"><path d="M2 8 L7 13 L18 2" stroke="var(--gold)" stroke-width="2" fill="none"/></svg>
+          </div>
+        </div>
+        <div style="flex:1;">
+          <p class="t-body" style="color:var(--white); font-weight:400; margin-bottom:4px;">Teams Assembled and Operational</p>
+          <p class="t-body-sm">Experts from intelligence, engineering, technology, and finance &mdash; active and coordinated.</p>
+        </div>
+        <div class="progress-bar" style="width:200px;"><div class="progress-bar-fill" style="width:100%;"></div></div>
+      </div>
+
+      <!-- Milestone 2 -->
+      <div class="flex items-center gap-32">
+        <div style="min-width:64px; text-align:right;">
+          <div style="width:48px; height:48px; border:2px solid var(--gold); display:flex; align-items:center; justify-content:center; margin-left:auto;">
+            <svg width="20" height="16" viewBox="0 0 20 16"><path d="M2 8 L7 13 L18 2" stroke="var(--gold)" stroke-width="2" fill="none"/></svg>
+          </div>
+        </div>
+        <div style="flex:1;">
+          <p class="t-body" style="color:var(--white); font-weight:400; margin-bottom:4px;">Data Collection &amp; Baseline Surveys Active</p>
+          <p class="t-body-sm">Active across corridor sectors &mdash; building the intelligence foundation.</p>
+        </div>
+        <div class="progress-bar" style="width:200px;"><div class="progress-bar-fill" style="width:85%;"></div></div>
+      </div>
+
+      <!-- Milestone 3 -->
+      <div class="flex items-center gap-32">
+        <div style="min-width:64px; text-align:right;">
+          <div style="width:48px; height:48px; border:2px solid var(--gold); display:flex; align-items:center; justify-content:center; margin-left:auto;">
+            <svg width="20" height="16" viewBox="0 0 20 16"><path d="M2 8 L7 13 L18 2" stroke="var(--gold)" stroke-width="2" fill="none"/></svg>
+          </div>
+        </div>
+        <div style="flex:1;">
+          <p class="t-body" style="color:var(--white); font-weight:400; margin-bottom:4px;">Digital Infrastructure Built</p>
+          <p class="t-body-sm">Initial GIS platform and regional data management system operational.</p>
+        </div>
+        <div class="progress-bar" style="width:200px;"><div class="progress-bar-fill" style="width:75%;"></div></div>
+      </div>
+
+      <!-- Milestone 4 -->
+      <div class="flex items-center gap-32">
+        <div style="min-width:64px; text-align:right;">
+          <div style="width:48px; height:48px; border:2px solid var(--gold); display:flex; align-items:center; justify-content:center; margin-left:auto;">
+            <svg width="20" height="16" viewBox="0 0 20 16"><path d="M2 8 L7 13 L18 2" stroke="var(--gold)" stroke-width="2" fill="none"/></svg>
+          </div>
+        </div>
+        <div style="flex:1;">
+          <p class="t-body" style="color:var(--white); font-weight:400; margin-bottom:4px;">MVP Intelligence System Operational</p>
+          <p class="t-body-sm">Core intelligence engine running &mdash; collecting, processing, and delivering actionable insights.</p>
+        </div>
+        <div class="progress-bar" style="width:200px;"><div class="progress-bar-fill" style="width:70%;"></div></div>
+      </div>
+
+      <!-- Milestone 5 -->
+      <div class="flex items-center gap-32">
+        <div style="min-width:64px; text-align:right;">
+          <div style="width:48px; height:48px; border:2px solid var(--cyan); display:flex; align-items:center; justify-content:center; margin-left:auto;">
+            <svg width="20" height="16" viewBox="0 0 20 16"><path d="M2 8 L7 13 L18 2" stroke="var(--cyan)" stroke-width="2" fill="none"/></svg>
+          </div>
+        </div>
+        <div style="flex:1;">
+          <p class="t-body" style="color:var(--white); font-weight:400; margin-bottom:4px;">Stakeholder Engagements Underway</p>
+          <p class="t-body-sm">Active engagement across corridor nations &mdash; building the coalition for execution.</p>
+        </div>
+        <div class="progress-bar" style="width:200px;"><div class="progress-bar-fill" style="width:60%;"></div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; padding:16px 24px; border-left:3px solid var(--gold); background:var(--gold-dim);">
+      <p class="t-body-sm" style="color:var(--gold-light);">
+        This work supports massive investments estimated in the billions of dollars. ALIGN is the key that unlocks these investments &mdash; providing the certainty that global capital requires before committing.
+      </p>
+    </div>
+
+    <div class="slide-num"><span>13</span> / 17</div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 14: THE 2026 WINDOW
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="slide bg-mid bg-grid" id="slide-14">
+  <div class="slide-inner accent-top">
+    <div class="t-label">Timeline</div>
+    <h2 class="t-title">The 2026 Window: From Blueprint to Control Room</h2>
+    <p class="t-subtitle">Defined by IMEC&rsquo;s financing gap, regulatory momentum, and shifting SWF allocation toward direct infrastructure plays.</p>
+
+    <div class="flex gap-48 flex-1 items-center" style="margin-top:40px; padding:0 40px;">
+      <!-- Phase 1 -->
+      <div class="flex-1 flex flex-col">
+        <div class="flex items-center gap-16 mb-24">
+          <div style="width:56px; height:56px; border:2px solid var(--gold); display:flex; align-items:center; justify-content:center;">
+            <span style="font-family:var(--mono); font-size:22px; color:var(--gold); font-weight:300;">01</span>
+          </div>
+          <div>
+            <p style="font-family:var(--mono); font-size:11px; color:var(--gold); letter-spacing:2px;">PHASE 1</p>
+            <p style="font-family:var(--sans); font-size:14px; color:var(--text-muted);">0 &ndash; 3 Months</p>
+          </div>
+        </div>
+        <h3 style="font-family:var(--serif); font-size:24px; font-weight:400; color:var(--white); margin-bottom:16px;">
+          Bounded POC &amp; Intelligence Indexing
+        </h3>
+        <div class="progress-bar mb-24"><div class="progress-bar-fill" style="width:100%;"></div></div>
+        <div class="card" style="padding:20px;">
+          <ul class="list-check">
+            <li>Proof of concept scoped and delivered</li>
+            <li>Intelligence indexing initiated across all corridor sectors</li>
+            <li>Initial stakeholder mapping completed</li>
+            <li>Data infrastructure foundation deployed</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Connector -->
+      <div style="width:40px; display:flex; align-items:center;">
+        <svg width="40" height="20"><line x1="0" y1="10" x2="32" y2="10" stroke="var(--gold)" stroke-width="1" stroke-dasharray="4,3"/><polygon points="32,6 40,10 32,14" fill="var(--gold)" opacity="0.6"/></svg>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="flex-1 flex flex-col">
+        <div class="flex items-center gap-16 mb-24">
+          <div style="width:56px; height:56px; border:2px solid var(--gold); display:flex; align-items:center; justify-content:center;">
+            <span style="font-family:var(--mono); font-size:22px; color:var(--gold); font-weight:300;">02</span>
+          </div>
+          <div>
+            <p style="font-family:var(--mono); font-size:11px; color:var(--gold); letter-spacing:2px;">PHASE 2</p>
+            <p style="font-family:var(--sans); font-size:14px; color:var(--text-muted);">3 &ndash; 9 Months</p>
+          </div>
+        </div>
+        <h3 style="font-family:var(--serif); font-size:24px; font-weight:400; color:var(--white); margin-bottom:16px;">
+          Institutional Anchoring &amp; Digital Twin v1
+        </h3>
+        <div class="progress-bar mb-24"><div class="progress-bar-fill" style="width:60%;"></div></div>
+        <div class="card" style="padding:20px;">
+          <ul class="list-check">
+            <li>Institutional partnerships formalized</li>
+            <li>Digital Twin v1 deployed and operational</li>
+            <li>First feasibility studies in production</li>
+            <li>Round Table expansion underway</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Connector -->
+      <div style="width:40px; display:flex; align-items:center;">
+        <svg width="40" height="20"><line x1="0" y1="10" x2="32" y2="10" stroke="var(--gold)" stroke-width="1" stroke-dasharray="4,3"/><polygon points="32,6 40,10 32,14" fill="var(--gold)" opacity="0.6"/></svg>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="flex-1 flex flex-col">
+        <div class="flex items-center gap-16 mb-24">
+          <div style="width:56px; height:56px; border:2px solid var(--cyan); display:flex; align-items:center; justify-content:center;">
+            <span style="font-family:var(--mono); font-size:22px; color:var(--cyan); font-weight:300;">03</span>
+          </div>
+          <div>
+            <p style="font-family:var(--mono); font-size:11px; color:var(--cyan); letter-spacing:2px;">PHASE 3</p>
+            <p style="font-family:var(--sans); font-size:14px; color:var(--text-muted);">9 &ndash; 18 Months</p>
+          </div>
+        </div>
+        <h3 style="font-family:var(--serif); font-size:24px; font-weight:400; color:var(--white); margin-bottom:16px;">
+          Control Room Activation &amp; Capital Deployment
+        </h3>
+        <div class="progress-bar mb-24"><div class="progress-bar-fill" style="width:30%; background:linear-gradient(90deg, var(--cyan), var(--gold));"></div></div>
+        <div class="card card-cyan" style="padding:20px;">
+          <ul class="list-check">
+            <li style="color:var(--text-secondary);">Unified Operations Center fully operational</li>
+            <li>Capital deployment into first SPV ventures</li>
+            <li>Full corridor intelligence coverage active</li>
+            <li>Strategic investment pipeline flowing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-num"><span>14</span> / 17</div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 15: PIPELINE — INVESTMENT OPPORTUNITIES
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="slide bg-dark bg-grid" id="slide-15">
+  <div class="slide-inner accent-top">
+    <div class="t-label">Opportunity</div>
+    <h2 class="t-title">High-Impact Sectors Under Evaluation</h2>
+    <p class="t-subtitle">The corridor is a once-in-a-century opportunity for ownership and co-building.</p>
+
+    <div class="flex gap-24 flex-1" style="margin-top:16px;">
+      <!-- Row of sector cards -->
+      <div class="flex flex-col gap-20 flex-1">
+        <div class="card flex-1 flex flex-col justify-center" style="text-align:center;">
+          <p style="font-family:var(--mono); font-size:10px; letter-spacing:2px; color:var(--cyan); margin-bottom:8px;">ENERGY</p>
+          <p style="font-family:var(--serif); font-size:24px; color:var(--white); font-weight:400;">Green Energy</p>
+          <p class="t-body-sm" style="margin-top:8px;">SMRs / Hydrogen Infrastructure</p>
+        </div>
+        <div class="card flex-1 flex flex-col justify-center" style="text-align:center;">
+          <p style="font-family:var(--mono); font-size:10px; letter-spacing:2px; color:var(--cyan); margin-bottom:8px;">AGRICULTURE</p>
+          <p style="font-family:var(--serif); font-size:24px; color:var(--white); font-weight:400;">Agrivoltaics</p>
+          <p class="t-body-sm" style="margin-top:8px;">Dual-use solar + agriculture systems</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-20 flex-1">
+        <div class="card flex-1 flex flex-col justify-center" style="text-align:center;">
+          <p style="font-family:var(--mono); font-size:10px; letter-spacing:2px; color:var(--cyan); margin-bottom:8px;">TRANSPORT</p>
+          <p style="font-family:var(--serif); font-size:24px; color:var(--white); font-weight:400;">Smart Tunnels</p>
+          <p class="t-body-sm" style="margin-top:8px;">Automated cross-border corridors</p>
+        </div>
+        <div class="card flex-1 flex flex-col justify-center" style="text-align:center;">
+          <p style="font-family:var(--mono); font-size:10px; letter-spacing:2px; color:var(--cyan); margin-bottom:8px;">RESILIENCE</p>
+          <p style="font-family:var(--serif); font-size:24px; color:var(--white); font-weight:400;">Disaster Recovery</p>
+          <p class="t-body-sm" style="margin-top:8px;">Multi-national emergency systems</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-20 flex-1">
+        <div class="card flex-1 flex flex-col justify-center" style="text-align:center;">
+          <p style="font-family:var(--mono); font-size:10px; letter-spacing:2px; color:var(--cyan); margin-bottom:8px;">LOGISTICS</p>
+          <p style="font-family:var(--serif); font-size:24px; color:var(--white); font-weight:400;">Cross-border Logistics</p>
+          <p class="t-body-sm" style="margin-top:8px;">Smart dry ports &amp; autonomous freight</p>
+        </div>
+        <div class="card flex-1 flex flex-col justify-center" style="text-align:center;">
+          <p style="font-family:var(--mono); font-size:10px; letter-spacing:2px; color:var(--cyan); margin-bottom:8px;">DIGITAL</p>
+          <p style="font-family:var(--serif); font-size:24px; color:var(--white); font-weight:400;">Digital Infrastructure</p>
+          <p class="t-body-sm" style="margin-top:8px;">Subsea cables &amp; data centers</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-20 flex-1">
+        <div class="card flex-1 flex flex-col justify-center" style="text-align:center;">
+          <p style="font-family:var(--mono); font-size:10px; letter-spacing:2px; color:var(--cyan); margin-bottom:8px;">WATER</p>
+          <p style="font-family:var(--serif); font-size:24px; color:var(--white); font-weight:400;">Water Systems</p>
+          <p class="t-body-sm" style="margin-top:8px;">Smart desalination &amp; circular water</p>
+        </div>
+        <div class="card card-cyan flex-1 flex flex-col justify-center" style="text-align:center;">
+          <p style="font-family:var(--mono); font-size:10px; letter-spacing:2px; color:var(--cyan); margin-bottom:8px;">SECURITY</p>
+          <p style="font-family:var(--serif); font-size:24px; color:var(--white); font-weight:400;">Cyber for Critical Infrastructure</p>
+          <p class="t-body-sm" style="margin-top:8px;">Protecting the corridor&rsquo;s backbone</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-num"><span>15</span> / 17</div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 16: THE ASK
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="slide bg-deep bg-grid" id="slide-16">
+  <div class="slide-inner">
+    <div class="t-label">Action</div>
+    <h2 class="t-title">Join the Cortex: Shape the Future</h2>
+    <p class="t-subtitle" style="font-family:var(--serif); font-size:24px; color:var(--gold-light); font-weight:300;">
+      Empty seats at the table &mdash; by design.
+    </p>
+
+    <div class="flex gap-40 flex-1 items-stretch" style="margin-top:40px;">
+      <!-- Path 1 -->
+      <div class="card flex-1 flex flex-col" style="border-color:var(--gold-border);">
+        <div style="padding:8px 16px; background:var(--gold-dim); border:1px solid var(--gold-border); display:inline-block; margin-bottom:24px; align-self:flex-start;">
+          <p style="font-family:var(--mono); font-size:11px; color:var(--gold); letter-spacing:2px;">PATH 1</p>
+        </div>
+        <h3 style="font-family:var(--serif); font-size:30px; font-weight:400; color:var(--white); margin-bottom:16px;">
+          Co-Fund the Study
+        </h3>
+        <div class="divider mb-24"></div>
+        <p class="t-body" style="flex:1;">
+          Joint funding of the feasibility research with full data access. Participate in shaping the intelligence foundation that will drive billions in investment decisions.
+        </p>
+        <div style="margin-top:24px; padding:16px; border-top:1px solid var(--gold-border);">
+          <p class="t-body-sm" style="color:var(--gold);">Full data access + research partnership</p>
+        </div>
+      </div>
+
+      <!-- Path 2 -->
+      <div class="card flex-1 flex flex-col" style="border-color:var(--gold); border-width:2px;">
+        <div style="padding:8px 16px; background:var(--gold); display:inline-block; margin-bottom:24px; align-self:flex-start;">
+          <p style="font-family:var(--mono); font-size:11px; color:var(--navy-deep); letter-spacing:2px; font-weight:600;">PATH 2</p>
+        </div>
+        <h3 style="font-family:var(--serif); font-size:30px; font-weight:400; color:var(--white); margin-bottom:16px;">
+          Join the Alliance
+        </h3>
+        <div class="divider mb-24"></div>
+        <p class="t-body" style="flex:1;">
+          Join the global consortium (The Round Table) with an Advisory Board seat. Shape strategy, access intelligence, and influence the direction of the corridor&rsquo;s development.
+        </p>
+        <div style="margin-top:24px; padding:16px; border-top:2px solid var(--gold); background:var(--gold-dim);">
+          <p class="t-body-sm" style="color:var(--gold-light); font-weight:500;">Round Table membership + Advisory Board seat</p>
+        </div>
+      </div>
+
+      <!-- Path 3 -->
+      <div class="card flex-1 flex flex-col" style="border-color:var(--cyan-border);">
+        <div style="padding:8px 16px; background:var(--cyan-dim); border:1px solid var(--cyan-border); display:inline-block; margin-bottom:24px; align-self:flex-start;">
+          <p style="font-family:var(--mono); font-size:11px; color:var(--cyan); letter-spacing:2px;">PATH 3</p>
+        </div>
+        <h3 style="font-family:var(--serif); font-size:30px; font-weight:400; color:var(--white); margin-bottom:16px;">
+          Shape the Future
+        </h3>
+        <div class="divider mb-24" style="background:var(--cyan);"></div>
+        <p class="t-body" style="flex:1;">
+          Influence the backbone of the region with direct partnership in SPV ventures. Co-own the infrastructure that will define trade routes for the next century.
+        </p>
+        <div style="margin-top:24px; padding:16px; border-top:1px solid var(--cyan-border);">
+          <p class="t-body-sm" style="color:var(--cyan);">Regional influence + SPV venture partnership</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-num"><span>16</span> / 17</div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 17: CONCLUSION — MAKING PEACE IRREVERSIBLE
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="slide bg-deep" id="slide-17">
+  <div class="slide-inner flex flex-col justify-center items-center" style="text-align:center;">
+    <!-- Top gold line -->
+    <div style="position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--gold), var(--cyan), var(--gold)); opacity:0.7;"></div>
+
+    <div style="max-width:900px;">
+      <img src="assets/logos/align-capital-logo.jpg" alt="ALIGN Capital" style="height:80px; margin-bottom:32px;">
+
+      <div class="t-label" style="margin-bottom:40px;">ALIGN Intelligence</div>
+
+      <h1 style="font-family:var(--serif); font-size:84px; font-weight:300; color:var(--white); line-height:1.1; margin-bottom:48px;">
+        Making Peace<br>Irreversible
+      </h1>
+
+      <div style="width:120px; height:1px; background:var(--gold); margin:0 auto 48px;"></div>
+
+      <p class="t-quote" style="margin-bottom:56px; max-width:750px; margin-left:auto; margin-right:auto;">
+        &ldquo;Infrastructure requires more than capital.<br>It requires Certainty.<br>ALIGN is designed to provide that.&rdquo;
+      </p>
+
+      <div class="flex gap-32 justify-center" style="margin-bottom:48px;">
+        <span class="pill">Hardwiring the Abraham Accords</span>
+        <span class="pill">Built for Execution</span>
+        <span class="pill">Intelligence-Driven</span>
+      </div>
+
+      <p style="font-family:var(--serif); font-size:22px; font-weight:300; color:var(--text-secondary);">
+        Shaping the 21st Century.
+      </p>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="slide-footer">
+      <img src="assets/logos/align-capital-logo.jpg" alt="ALIGN Capital" style="height:24px;">
+      <span>CONFIDENTIAL &mdash; INSTITUTIONAL USE ONLY</span>
+      <span style="color:var(--gold);">17 / 17</span>
+    </div>
+  </div>
+</section>
+
+<script>
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  const slides = document.querySelectorAll('.slide');
+  const scrollTop = window.scrollY;
+  const currentIndex = Math.round(scrollTop / 1080);
+
+  if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+    e.preventDefault();
+    if (currentIndex < slides.length - 1) {
+      slides[currentIndex + 1].scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+  if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+    e.preventDefault();
+    if (currentIndex > 0) {
+      slides[currentIndex - 1].scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+});
+</script>
+</body>
+</html>
